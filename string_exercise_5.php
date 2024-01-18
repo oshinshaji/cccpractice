@@ -12,7 +12,9 @@ echo strtolower($quote);
 echo "<br>";
 
 echo "Capitilized first letter of each word: ";
-echo ucwords($quote);
+// echo ucwords($quote);
+
+echo "123";
 
 
 ?>
