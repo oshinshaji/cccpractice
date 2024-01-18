@@ -58,7 +58,7 @@ echo $str;
 
 // 9.explode($delimiter, $string): //doubt
 echo "<br>9) ";
-$str="This,will get,coverted into array,of four";
+$str="This,will get,converted into array,of four";
 $del=",";
 $arr=array(explode($del,$str));
 print_r($arr);
