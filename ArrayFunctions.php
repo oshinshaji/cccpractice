@@ -6,6 +6,7 @@ echo "1. array() or []:"."<br>";
 $a1=array("apple","bag","cat","dog");
 $a2=array("orange","bag","cat","dog");
 print_r($a1)."<br>";
+echo "<br>";
 //    - Creates a new array.
 echo "2. array_merge():"."<br>";
 //    - Merges two or more arrays.
@@ -20,6 +21,9 @@ echo "<br>";
 
 echo "4. range():"."<br>";
 //    - Creates an array containing a range of elements.
+$arr_num=range(0,5);
+print_r($arr_num);
+echo "<br>";
 echo "<br>";
 
 echo " Array Modification:"."<br>";
@@ -52,6 +56,8 @@ echo "<br>";
 echo "9. array_splice():"."<br>";
 //    - Removes a portion of the array and replaces it with something else.
 array_splice($a1,2,2,"replaced");
+print_r($a1);
+echo "<br>";
 echo "<br>";
 
 echo "Array Access:"."<br>";
@@ -72,7 +78,7 @@ echo "12. array_key_exists():"."<br>";
         echo"yes,exists";
     }
     else{
-        echo"no,doesn't";
+        echo"no,doesn't exist";
     };
     echo "<br>";
 echo "13. array_keys():"."<br>";
@@ -136,6 +142,7 @@ echo "23. krsort():"."<br>";
     krsort($a4);
     print_r($a4);
     echo "<br>";
+    echo "<br>";
 
 echo "Array Filtering:"."<br>";
 
@@ -167,6 +174,7 @@ echo "26. array_reduce():"."<br>";
 
     $arr2=array_reduce($arr,"mul");
     print_r($arr2);
+echo "<br>";
 echo "<br>";
 
 echo "Array Slicing:"."<br>";
