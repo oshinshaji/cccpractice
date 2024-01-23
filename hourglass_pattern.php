@@ -5,7 +5,7 @@ $n=10;
 for($i=1;$i<=$n/2;$i++){
     for($j=1;$j<=$n;$j++){
         if($j<$i || $j>$n-$i+1){
-            echo "-"." ";
+            echo "&nbsp"." ";
         }
         else{
             echo $j." ";
@@ -23,7 +23,7 @@ for($i=($n/2)-2;$i>=0;$i--){
             echo $j." ";
         }
         else{
-            echo "-"." ";
+            echo "&nbsp"." ";
         }
     }
     echo "<br>";
@@ -39,7 +39,7 @@ $n=11;
 for($i=0;$i<$n/2;$i++){
     for($j=1;$j<=$n;$j++){
         if($j<=$i || $j>$n-$i){
-            echo "-"." ";
+            echo "&nbsp"." ";
         }
         else{
             echo $j." ";
@@ -49,8 +49,8 @@ for($i=0;$i<$n/2;$i++){
 }
 for($i=1;$i<=$n/2;$i++){
     for($j=1;$j<=$n;$j++){
-        if($j<=($n/2)-$i || $j>($n/2)+$i){
-            echo "-"." ";
+        if($j<=($n/2)-$i || $j>($n/2)+$i+1){
+            echo "&nbsp"." ";
         }
         else{
             echo $j." ";

@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
         echo "error:".mysqli_error($conn);
     } */
 
-     // Use parameterized query to prevent SQL injection
+     //we have to use parameterized query to prevent SQL injection
      $sql = "INSERT INTO ccc_product (product_name, sku, product_type, category, manufacturer_cost, shipping_cost, total_cost, price, status, created_at, updated_at)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
