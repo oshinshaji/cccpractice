@@ -1,6 +1,7 @@
 <!-- After using functions -->
 
 <!DOCTYPE html>
+<!-- oshin -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +14,7 @@
         <label for="pname">Product name:</label>
         <input type="text" id="pname" name="p_data[product_name]">
         <br><br>
-        <label for="pname">SKU:</label>
+        <label for="sku">SKU:</label>
         <input type="text" id="sku" name="p_data[sku]">
         <br><br>
         <p>Product Type:</p>
@@ -73,4 +74,5 @@
         
     </form>
 </body>
+<!-- oshin -->
 </html>

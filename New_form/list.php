@@ -1,4 +1,5 @@
 <?php
+//oshin
 include_once "form_connection.php";
 // $sql="SELECT * FROM ccc_product order by sku ASC limit 10 EXCEPT TOP 2;";
 $maxInt = PHP_INT_MAX;
@@ -10,8 +11,8 @@ $n=10;
 $limit=$totalRows-$n;
 
 $sql = "SELECT * FROM ccc_product
-        ORDER BY sku
-        LIMIT $limit , $n";
+ORDER BY product_id
+LIMIT 2 , 10";
 
 $result = $conn->query($sql);
 $result = $conn->query($sql);
@@ -50,4 +51,5 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 $conn->close();
+//oshin
 ?>

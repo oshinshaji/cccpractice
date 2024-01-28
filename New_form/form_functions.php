@@ -1,4 +1,5 @@
 <?php
+//oshin
 function insert($tablename,$data){
     $columns=[];
     $values=[];
@@ -34,6 +35,17 @@ function delete($tablename,$where){
     $where_cond=implode($where_cond);
     return "DELETE FROM {$tablename} WHERE {$where_cond};";
  } 
+
+ function select($tablename,$data){
+    $cols=[];
+    foreach($data as $key => $value){
+        $cols[]="{$value}";
+    }
+    $cols=implode(",",$cols);
+    return "SELECT {$cols} FROM {$tablename};";
+}
+
+ //oshin
 ?>
 
 <!-- UPDATE table_name
