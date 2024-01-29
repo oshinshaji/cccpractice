@@ -5,6 +5,8 @@ include_once "sql/functions.php";
 
 if(isset($_POST['insert'])){
     $p_data=$_POST['p_data'];
+    // $col_name=$c_data['name'];
+    $col_name=$c_data['product_id'];
     $sql=insert('ccc_product',$p_data);
     if ($conn->query($sql) === TRUE) {
       echo "<script>alert('New record added')</script>";
@@ -16,9 +18,23 @@ if(isset($_POST['insert'])){
 else if(isset($_POST['update'])){
   $p_data=$_POST['p_data'];
   $product_name = $p_data['product_name'];
+  $col_name=$c_data['product_id'];
   $sql=update('ccc_product',$p_data,['product_name'=>$product_name]);
   if ($conn->query($sql) === TRUE) {
     echo "<script>alert('Record updated')</script>";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
+else if(isset($_POST['delete'])){
+  $p_data=$_POST['p_data'];
+  $product_name = $p_data['product_name'];
+  // $col_name=$c_data['product_id'];
+  $sql=delete('ccc_product',['product_name'=>$product_name]);
+  // $sql=delete('ccc_product',['product_name'=>'painting']);
+  
+  if ($conn->query($sql) === TRUE) {
+    echo "<script>alert('Record Deleted')</script>";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }

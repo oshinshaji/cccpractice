@@ -11,7 +11,9 @@ $countRow = $countResult->fetch_assoc();
 $totalRows = $countRow['total_rows'];
 $n=20;
 $limit=$totalRows-$n;
-$sql = select('ccc_product',$zdata,$n,$limit);
+// $col_name=$c_data['product_id'];
+
+$sql = select('ccc_product',$zdata,$n,$limit,$col_name);
 
 $result = $conn->query($sql);
 echo "<table border='1'>

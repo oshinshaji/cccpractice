@@ -6,6 +6,7 @@ include_once "sql/functions.php";
 
 if(isset($_POST['submit'])){
     $c_data=$_POST['c_data'];
+    $col_name=$c_data['name'];
     
 }
 

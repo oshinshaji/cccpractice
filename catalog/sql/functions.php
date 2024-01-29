@@ -55,14 +55,15 @@ function update($tablename,$data,$where){
 
 // DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
 function delete($tablename,$where){
-    $cols=[];
+    
     $where_condition=[];
     foreach($where as $key =>$value){
-        $where_condition[]="`{$key}`="."'".addslashes($value)."'";
+        $where_condition[]="`{$key}` ="."'".addslashes($value)."'";
     }
-
+    $where_condition=implode($where_condition);
     return "DELETE FROM {$tablename} WHERE {$where_condition};";
 }
+
 
 
 
@@ -85,13 +86,14 @@ $totalRows = $countRow['total_rows'];
 $n=20;
 $limit=$totalRows-$n; */
 
-function select($tablename,$data,$n,$limit){
+function select($tablename,$data,$n,$limit,$col_name){
     $cols=[];
     foreach($data as $key => $value){
         $cols[]="{$value}";
     }
     $cols=implode(",",$cols);
-    return "SELECT {$cols} FROM {$tablename} ORDER BY product_id
+    $orderByClause = ($col_name) ? "ORDER BY {$col_name}" : "";
+    return "SELECT {$cols} FROM {$tablename} {$orderByClause} {$col_name}
 LIMIT $limit , $n;";
 }
 

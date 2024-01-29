@@ -74,6 +74,9 @@
         <br>
         <br>
         <input type="submit" value="Update" name="update" >
+        <br>
+        <br>
+        <input type="submit" value="Delete" name="delete" >
         
     </form>
 </body>

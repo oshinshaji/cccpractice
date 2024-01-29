@@ -9,7 +9,12 @@ $totalRows = $countRow['total_rows'];
 $n=$totalRows;
 $limit=$totalRows-$n;
 $c_data=array("name");
-$sql=select('ccc_category',$c_data,3,0);
+if(isset($_POST['submit'])){
+    $c_data=$_POST['c_data'];
+    $col_name=$c_data['name'];
+    
+}
+$sql=select('ccc_category',$c_data,$n,$limit,$col_name);
 $result=$conn->query($sql);
 
 if($result->num_rows>0){
