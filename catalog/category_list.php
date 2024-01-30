@@ -1,25 +1,29 @@
 <?php
+// oshin
 include_once "sql/connection.php";
-include_once "sql/functions.php";
-$maxInt = PHP_INT_MAX;
-$countQuery = "SELECT COUNT(*) AS total_rows FROM ccc_product";
-$countResult = $conn->query($countQuery);
-$countRow = $countResult->fetch_assoc();
-$totalRows = $countRow['total_rows'];
-$n=$totalRows;
-$limit=$totalRows-$n;
+include_once "sql/class.php";
+
+/*---making objects of the func_builder and func_executer class---*/
+$fb4=new func_building();
+$fe4=new func_executer();
+
 $c_data=array("name");
-if(isset($_POST['submit'])){
-    $c_data=$_POST['c_data'];
-    $col_name=$c_data['name'];
-    
-}
-$sql=select('ccc_category',$c_data,$n,$limit,$col_name);
-$result=$conn->query($sql);
+
+
+/*------calling select function------*/
+$sql=$fb4->select('ccc_category',$c_data);
+$result=$fe4->query_executer($sql,$conn);
+$extra="";
+
+echo "<table border='1'>
+<tr>
+<th>Category Names</th>
+</tr>";
 
 if($result->num_rows>0){
-    while($record=$result->fetch_assoc()){
-        echo  "$record[name]"."<br>";
-    }
+   /*------calling fetch_association function------*/
+   $fe4->fetch_association($result,$c_data,$extra);
 }
+echo "</table>";
+//oshin
 ?>

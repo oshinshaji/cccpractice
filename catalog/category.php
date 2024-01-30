@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- oshin -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,8 @@
         <!-- <label for="ese">Ese hi:</label>
         <input type="text" id="ese" name="c_data[ese]"> -->
         <br><br>
-        <input type="submit" value="Add Category" name="submit">
+        <input type="submit" value="Add Category" name="add_category">
     </form>
 </body>
+<!-- oshin -->
 </html>

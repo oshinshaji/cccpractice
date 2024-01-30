@@ -1,0 +1,116 @@
+<?php
+/* oshin */
+include_once "connection.php";
+/*-----------------Function builder class------------------ */
+class func_building{
+
+    /*-----------------Insert Function------------------ */
+public function insert($tablename,$data){
+        $columns=[];
+        $values=[];
+        foreach($data as $field =>$value){
+            $columns[]="`{$field}`";
+            $values[]="'" .addslashes($value)."' ";
+        }
+        $columns=implode(",",$columns);
+        $values=implode(",",$values);
+        return "INSERT INTO {$tablename} ({$columns}) VALUES ({$values});";
+    } 
+
+    /*-----------------Update Function------------------ */
+public function update($tablename,$data,$where){
+        $cols=[];
+        $where_condition=[];
+        foreach($data as $key=>$value){
+            $cols[]="`{$key}` ="."'".addslashes($value)."'";
+        }
+        $cols=implode(",",$cols);
+        foreach($where as $key=>$value){
+            $where_condition[]="`{$key}`="."'".addslashes($value)."'";
+        }
+        $where_condition=implode(",",$where_condition);
+        return "UPDATE {$tablename} SET {$cols} WHERE {$where_condition};";
+    }
+    
+    /*-----------------Delete Function------------------ */
+public function delete($tablename,$where){
+    
+        $where_condition=[];
+        foreach($where as $key =>$value){
+            $where_condition[]="`{$key}` ="."'".addslashes($value)."'";
+        }
+        $where_condition=implode($where_condition);
+        return "DELETE FROM {$tablename} WHERE {$where_condition};";
+    }
+
+
+    /*-----------------Select Function------------------ */
+public function select($tablename,$data){
+        $cols=[];
+        foreach($data as $key => $value){
+            $cols[]="{$value}";
+        }
+        $cols=implode(",",$cols);
+        return "SELECT {$cols} FROM {$tablename};";
+    }
+
+}
+
+
+
+/*-----------------Function Executer class------------------ */
+class func_executer{
+
+    /*-----------------Query executer Function------------------ */
+    public function query_executer($sql,$conn){
+        $result = $conn->query($sql);
+        $obj5=new printer();
+        $obj5->message();
+        return $result;
+    }
+
+    /*-----------------Fetch Association Function------------------ */
+    public function fetch_association($result,$zdata,$extra){
+     
+        foreach($zdata as $key =>$value){
+            $z[]=$value;
+        }
+        while($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        foreach($z as $column){
+            echo "<td>" .$row[$column]. "</td>";
+        }
+        echo $extra;
+        echo "</tr>";
+        }       
+    }
+}
+
+
+/*-----------------Message Printer Class------------------ */
+class printer{
+
+    /*-----------------Message Function------------------ */
+    public function message(){
+        if(isset($_POST['insert'])){
+            echo "<script>alert('New record added')</script>";
+        }
+        else if(isset($_POST['update'])){
+            echo "<script>alert('Record updated')</script>";
+        }
+        else if(isset($_POST['delete'])){
+            echo "<script>alert('Record deleted')</script>";
+        }
+      else if(isset($_POST['add_category'])){
+        echo "<script>alert('Category added')</script>";
+       
+      }
+      else{
+        echo "RECORDS"."<br>";
+      }
+    }
+
+}
+
+/* oshin */
+?>
