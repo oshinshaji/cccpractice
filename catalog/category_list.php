@@ -1,5 +1,5 @@
 <?php
-// oshin
+
 include_once "sql/connection.php";
 include_once "sql/class.php";
 
@@ -25,5 +25,5 @@ if($result->num_rows>0){
    $fe4->fetch_association($result,$c_data,$extra);
 }
 echo "</table>";
-//oshin
+
 ?>

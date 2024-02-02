@@ -1,19 +1,24 @@
 <?php
-//oshin
+
 include_once "sql/connection.php";
 include_once "sql/class.php";
+include_once "sql/object_for_data.php";
+include_once "product_process.php";
 
 $fb2=new func_building();
 $fe2=new func_executer();
+$newObj = new Data_Collection_Object();
+$column_names=array("product_id","product_name","sku","category");
+$extra=["where"=>[],"order_by"=>["product_id DES"],"limit"=>5];
+$sql=$fb2->select('ccc_product',$column_names,$extra);
+$result =$fe2->query_executer($sql,$conn);
+$_temp=$fe2->fetch_association($result);
 
-$zdata=array("product_id","product_name","sku","category");
-$extra="<th><a href='product.php/'>Edit</a></th>"."<th><a href='product.php/'>Delete</a></th>";
 
-// $sql =$fb2-> select('ccc_product',$zdata,$n,$limit,$col_name);
+foreach ($_temp as $temp) {
+    $newObj->addData($temp);
+}
 
-$sql =$fb2-> select('ccc_product',$zdata);
-
-$result = $fe2->query_executer($sql,$conn);
 echo "<table border='1'>
 <tr>
 <th>Product ID</th>
@@ -23,13 +28,19 @@ echo "<table border='1'>
 <th>EDIT</th>
 <th>DELETE</th>
 </tr>";
-if ($result->num_rows > 0) {
-   $fe2->fetch_association($result,$zdata,$extra);
+foreach($newObj->getData() as $_mmdata){
+  echo "<tr>";
+  echo "<td>".$_mmdata->getProduct_id('0')."</td>";
+  echo "<td>".$_mmdata->getProduct_name('0')."</td>";
+  echo "<td>".$_mmdata->getSku('0')."</td>";
+  echo "<td>".$_mmdata->getCategory('0')."</td>";
+  echo "<th> <a href='product.php?product_id=".$_mmdata->getProduct_Id('0')."'>Edit</a></th>";
+  echo "<th> <a href='product_list.php?delete=".$_mmdata->getProduct_Id('0')."'>Delete</a></th>";
+  echo "</tr>";
   
-} else {
-  echo "0 results";
 }
 echo "</table>";
+
 $conn->close();
-//oshin
+
 ?>

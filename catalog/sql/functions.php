@@ -1,5 +1,5 @@
 <?php
-// oshin
+
 /* function insert($tablename,$data){
     $cols=[];
     $vals=[];
@@ -108,5 +108,5 @@ LIMIT $limit , $n;";
 
 // $sql = "SELECT id, firstname, lastname FROM MyGuests";
 
-// oshin
+
 ?>

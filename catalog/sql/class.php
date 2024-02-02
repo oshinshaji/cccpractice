@@ -1,6 +1,7 @@
 <?php
-/* oshin */
+
 include_once "connection.php";
+
 /*-----------------Function builder class------------------ */
 class func_building{
 
@@ -56,8 +57,6 @@ public function select($tablename,$data){
 
 }
 
-
-
 /*-----------------Function Executer class------------------ */
 class func_executer{
 
@@ -70,22 +69,20 @@ class func_executer{
     }
 
     /*-----------------Fetch Association Function------------------ */
-    public function fetch_association($result,$zdata,$extra){
-     
-        foreach($zdata as $key =>$value){
-            $z[]=$value;
-        }
-        while($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        foreach($z as $column){
-            echo "<td>" .$row[$column]. "</td>";
-        }
-        echo $extra;
-        echo "</tr>";
-        }       
-    }
-}
+   
+    public function fetch_association($result){
+        $data=[];
+        // if ($result->num_rows > 0){
+            while($row=$result->fetch_assoc()){
+                $data[]=$row;
+            // }
 
+        }
+        return $data;
+        
+    }
+    
+}
 
 /*-----------------Message Printer Class------------------ */
 class printer{
@@ -106,11 +103,10 @@ class printer{
        
       }
       else{
-        echo "RECORDS"."<br>";
+        // echo "RECORDS"."<br>";
       }
     }
 
 }
 
-/* oshin */
 ?>
