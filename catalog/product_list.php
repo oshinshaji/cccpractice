@@ -9,8 +9,9 @@ $fb2=new func_building();
 $fe2=new func_executer();
 $newObj = new Data_Collection_Object();
 $column_names=array("product_id","product_name","sku","category");
-$extra=["where"=>[],"order_by"=>["product_id DES"],"limit"=>5];
+$extra=["where"=>[],"order_by"=>["product_id DESC"],"limit"=>10];
 $sql=$fb2->select('ccc_product',$column_names,$extra);
+// echo $sql;
 $result =$fe2->query_executer($sql,$conn);
 $_temp=$fe2->fetch_association($result);
 

@@ -31,6 +31,7 @@ if (isset($_POST['insert'])) {
     header("Location:product_list.php");
   } else {
     $sql = $fb1->insert('ccc_product', $p_data);
+    // echo $sql;
     $fe1->query_executer($sql, $conn);
   }
 }
