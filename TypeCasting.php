@@ -28,7 +28,7 @@ echo "<br>";
 
 
 // (bool) - Converts to data type Boolean
-$a="true";
+$a=1;
 echo var_dump($a)."<br>";
 $a = (bool) $a;
 echo var_dump($a);

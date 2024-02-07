@@ -53,7 +53,7 @@ echo "<br>";
 echo "Number Formatting"."<br>";
 // number_format($number, $decimals, $decimal_point, $thousands_separator): 
 // Formats a number with grouped thousands and a specified number of decimals.
-echo number_format(299.9);
+echo number_format(299.985,2);
 
 
 ?>

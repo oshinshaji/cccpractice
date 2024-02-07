@@ -9,7 +9,7 @@ $arr=array(64,34,25,12,22,11,90);
     echo "here";
 } */
 function bubble_sort($a){
-    $len=$len=count($a);
+    $len=count($a);
     for ($j=$len-1;$j>0;$j--){
         for($i=1;$i<=$j;$i++){
             if($a[$i-1]>$a[$i]){
