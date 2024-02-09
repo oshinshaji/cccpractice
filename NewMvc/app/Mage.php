@@ -7,6 +7,10 @@ class Mage{
        echo get_class($requestModel);
     }
 
+    public static function getSingleton($className){
+
+    }
+
     public static function getModel($modelName){
         $modelName=explode("/",$modelName);
         $modelName[0]=ucfirst($modelName[0]);
@@ -15,6 +19,21 @@ class Mage{
     //    $modelName[0];
         return new $modelName[0];
     }
+
+   
+
+    public static function register($key, $value){
+
+    }
+
+    public static function registry($key){
+
+    }
+
+    public static function getBaseDir($subDir = null){
+
+    }
+
 
 }
 ?>
