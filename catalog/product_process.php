@@ -1,9 +1,7 @@
 <?php
-
 include_once "sql/connection.php";
 include_once "sql/class.php";
 include_once "sql/object_for_data.php";
-
 
 $fb1 = new func_building();
 $fe1 = new func_executer();
