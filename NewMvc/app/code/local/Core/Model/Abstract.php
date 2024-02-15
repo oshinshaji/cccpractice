@@ -4,6 +4,7 @@ class Core_Model_Abstract{
     protected $resourceClass='';
     protected $collectionClass='';
     protected $resource=null;
+    
     protected $collection=null;
     public function __construct(){
 

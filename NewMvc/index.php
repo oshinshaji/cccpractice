@@ -2,7 +2,8 @@
 include_once "app/code/local/autoload.php";
 include_once "app/Mage.php";
 
-$mage=new Mage();
-$mage->init();
+// $mage=new Mage();
+// $mage->init();
+Mage::init();
 
 ?>
