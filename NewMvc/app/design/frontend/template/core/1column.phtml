@@ -6,15 +6,11 @@
     <title>Document</title>
     <?php $this->getChildHtml('head');?>
 </head>
-<?php /*  echo get_class($this) */?> 
 <body>
-    <!-- <h2>hello</h2> -->
     <div class="header"><?php $this->getChildHtml('header');?></div>
-    <div class="content">
-        <div class="left">Left</div>
-        <div class="middle"><?php $this->getChildHtml('content');?></div>
-        <div class="right">Right</div>
-    </div>
+    <div class="content"><?php $this->getChildHtml('content');?></div>
+    <div></div>
+
     <div class="footer"><?php $this->getChildHtml('footer');?></div>
 
 </body>

@@ -1,0 +1,106 @@
+<?php
+$productCollection = Mage::getModel("catalog/product")->getCollection()
+    // ->addFieldToFilter('name','pen')
+    // ->addFieldToFilter('name',['like' => 'cat'])
+    // ->addFieldToFilter('price',['gt' => '3'])
+    // ->addFieldToFilter('name',['in' => 'bet'])
+    // ->addFieldToFilter('price',['between' => '2000,300000'])
+;
+// print_r($productCollection);
+foreach ($productCollection->getData() as $product) {
+    // echo "<pre>";
+    // var_dump($product->getSku());
+    // print_r($product);
+}
+// echo get_class($productCollection); 
+?>
+<div class="table">
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>Image_Link</th>
+            <th>Link</th>
+            <th>Category ID</th>
+            <th>Price</th>
+            <th>Manufacturer Cost</th>
+            <th>Shipping Cost</th>
+            <th>Total Cost</th>
+            <th>Margin Percentage</th>
+            <th>Min Price</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php
+        foreach ($productCollection->getData() as $product): ?>
+            <tr>
+                <td>
+                    <?php print_r($product->getId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSku()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getName()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getColor()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getSize()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getDescription()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getImage_Link()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getLink()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getCategoryId()); ?>
+                </td>
+
+
+                <td>
+                    <?php print_r($product->getPrice()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMfrCost()); ?>
+                </td>
+
+                <td>
+                    <?php print_r($product->getShippingCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getTotalCost()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMarginPercentage()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getMin_Price()); ?>
+                </td>
+                <td>
+                    <?php print_r($product->getStatus()); ?>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/catalog_product/form?id=<?php print_r($product->getId()) ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/catalog_product/delete?id=<?php print_r($product->getId()) ?>">Delete</a>
+                </td>
+            </tr>
+
+            <?php echo "<br>"; endforeach; ?>
+    </table>
+</div>

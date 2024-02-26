@@ -4,28 +4,30 @@ class Core_Model_Abstract{
     protected $resourceClass='';
     protected $collectionClass='';
     protected $resource=null;
-    
     protected $collection=null;
     public function __construct(){
         $this->init();
+
     }
+    public function init(){ }
 
-    public function init(){
-
-    } 
     public function setResourceClass($resourceClass){
 
     }
     public function setCollectionClass($collectionClass){
 
     }
-
     public function setId($id){
+        $this->_data[$this->getResource()->getPrimaryKey()]=$id;
+        return $this;
+
 
     }
-
     public function getId(){
-        return $this->_data[$this->getResource()->getPrimaryKey()];
+       
+        // echo $this->_data[$this->getResource()->getPrimaryKey()];
+        return isset($this->_data[$this->getResource()->getPrimaryKey()])
+        ?$this->_data[$this->getResource()->getPrimaryKey()]:false;
 
     }
     public function getResource(){
@@ -33,45 +35,58 @@ class Core_Model_Abstract{
 
     }
     public function getCollection(){
+        $collection =new $this->collectionClass();
+        $collection->setResource($this->getResource());
+        $collection->select();
+        return $collection;
 
     }
-
-    
     public function __set($key,$value){
 
     }
-
     public function __get($key){
 
     }
-
     public function __unset($key){
 
     }
 
-    public function __call($name, $arguments)
-    {
-        $name=$this->camel2dashed(substr($name,3));
+    public function __call($name,$arguments){
+        $name=$this->camelToDashed(substr($name,3));
         return (isset($this->_data[$name])
         ?$this->_data[$name]
         :" ");
-        // echo $this->_data[$name];
-    
+        
+
     }
 
-    function camel2dashed($className) {
-        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1_', $className));
+    public function dashesToCamelCase($string, $capitalizeFirstCharacter = false) 
+    {
+        $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+        if (!$capitalizeFirstCharacter) {
+            $str[0] = strtolower($str[0]);
+        }
+        return $str;
+    }
+ 
+    public function camelToDashed($className){
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1_',$className));
+
     }
 
     public function getData($key=null){
+        return $this->_data;
 
     }
 
     public function setData($data){
+        $this->_data=$data;
+        return $this;
 
     }
 
     public function addData($key,$value){
+        
 
     }
 
@@ -80,21 +95,30 @@ class Core_Model_Abstract{
     }
 
     public function save(){
-
+    //    print_r( $this->getData());
+       $this->getResource()->save($this);
+       return $this;
+    //    print_r( $this);
     }
 
     public function load($id,$column=null){
-        // echo get_class($this->getResource());
-        // echo $_tableName=;
-         $this->_data=$this->getResource()->load($id,$column);
-         return $this;
-        // echo "SELECT * FROM {$this->getResource()->getTableName()} WHERE 'product_id'=1 LIMIT 1";
-        // print_r($data);
+        $this->_data=$this->getResource()->load($id,$column);
+        return $this;
+        
+
     }
 
+    //delete 
     public function delete(){
-
+        $this->getResource()->delete($this);
+        return $this;
     }
+
+    //update
+    public function update($id){
+        
+    }
+
 
      
 

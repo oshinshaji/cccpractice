@@ -1,0 +1,16 @@
+
+.footer {
+    background-color: #333;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section-coupons{
+    margin-right: 10px;
+    
+}
+
+.footer-section h3 {
+    color: #fff;
+}

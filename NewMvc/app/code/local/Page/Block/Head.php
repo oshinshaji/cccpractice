@@ -8,17 +8,26 @@ class Page_Block_Head extends Core_Block_Template{
     }
 
     public function addJs($file){
+        // echo "here in addjs";
         $this->_js[]=$file;
+        // print_r ($this->_js);
     }
 
-    public function getJs(){
-        return $this->_js;
-    }
     public function addCss($file){
         $this->_css[]=$file;
     }
 
-    public function getCss(){   
+    public function getJs(){
+        // echo "here in getjs";
+        // print_r($this->_js);
+        return $this->_js;
+      
+        
+        // print_r ($this->_js);
+    }
+
+    public function getCss(){
+        // echo "here in getcss";
         return $this->_css;
     }
     

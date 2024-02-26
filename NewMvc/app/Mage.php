@@ -1,17 +1,17 @@
 <?php
-class Mage{
-    public static $baseDir='C:\xampp\htdocs\Cybercom_Practice\NewMvc';
-    public static function init(){
-
-        /* $request=new Core_Model_Request();
-        echo  $request->getRequestUri(); */
-        // $requestModel=Mage::getModel("core/request");
-    //    echo get_class($requestModel);
-        $frontController = new Core_Controller_Front();
-        $frontController->init();
+class Mage
+{
+    
+    public static $baseDir= 'C:\xampp\htdocs\Cybercom_Practice\NewMvc';
+    public static function init()
+    {
+        $frontcontroller=new Core_Controller_Front();
+         $frontcontroller->init();
+        //$requestModel=new Core_Model_Request();
+        //echo $requestModel->getRequestUri();
+        //$requestModel=Mage::getModel("core/request");
+        //echo (get_class($requestModel));
     }
-
-   
 
     public static function getModel($modelName)
     {
@@ -28,29 +28,34 @@ class Mage{
         
     }
 
-    public static function getSingleton($className){
+    
+    
 
-    }
-   
-
-    public static function register($key, $value){
-
-    }
-
-    public static function registry($key){
+    public static function getSingleton($className)
+    {
 
     }
 
-    public static function getBaseDir($subDir = null){
-        
+    public static function register($key, $value)
+    {
+
+    }
+
+    public static function registry($key)
+    {
+
+    }
+
+    public static function getBaseDir($subDir = null)
+    {
         if($subDir)
         {
             return self::$baseDir."/".$subDir;
         }
         return self::$baseDir;
-
     }
-
-
+    public static function getBaseUrl(){
+        return "http://localhost/cybercom_practice/NewMvc/";
+    }
 }
 ?>

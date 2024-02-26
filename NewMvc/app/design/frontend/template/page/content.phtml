@@ -1,18 +1,3 @@
-<h1>Content</h1>
-<pre>
-<?php 
-$product_model =Mage::getModel("product/product")->load(1);
-echo($product_model->getId());
-// echo "here"; 
-echo($product_model->getProductName())."<br>";
-echo($product_model->getProductype())."<br>";
-echo($product_model->getSku())."<br>";
-echo($product_model->getManufacturerCost())."<br>";
-echo($product_model->getShippingCost())."<br>";
-echo($product_model->getTotalCost())."<br>";
-echo($product_model->getPrice())."<br>";
-// echo ":and here";
-// print_r($product_model->getProductName());
-print_r($product_model);
-?>
-</pre>
+<div>
+    <?php $this->getChildHtml('')?>
+</div>
