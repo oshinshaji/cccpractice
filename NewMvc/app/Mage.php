@@ -3,6 +3,8 @@ class Mage
 {
     
     public static $baseDir= 'C:\xampp\htdocs\Cybercom_Practice\NewMvc';
+
+    private static $singleton=[];
     public static function init()
     {
         $frontcontroller=new Core_Controller_Front();
@@ -33,6 +35,17 @@ class Mage
 
     public static function getSingleton($className)
     {
+        // $model=explode("/",$className);
+        // $modelObj=ucfirst($model[0])."_Model_".ucfirst($model[1]);
+        if(isset(self::$singleton[$className])) {
+            echo "exists";
+           return  self::$singleton[$className];
+        }
+        else{
+            return self::$singleton[$className]=self::getModel($className);
+        }
+
+       
 
     }
 

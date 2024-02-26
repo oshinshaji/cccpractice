@@ -16,4 +16,20 @@ class Page_Controller_Index extends Core_Controller_Front_Action{
         $layout->toHtml();
       
     }
+
+    public function testAction()
+    {
+        echo "<pre>";
+        // var_dump($_SESSION);
+        // $productModel=Mage::getSingleton('core/session');
+        // ->set('customer_id',1);
+        // print_r($_SESSION);
+        $productModel=Mage::getSingleton('catalog/product')->setData(['as','ab']);
+         print_r($productModel);
+        $productModel=Mage::getSingleton('catalog/product')->setData(['xyz','asdsxb']);
+        print_r($productModel);
+
+
+
+    }
 }

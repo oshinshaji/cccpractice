@@ -1,20 +1,21 @@
-.table {
+.listTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2px; 
+    margin-top: 0px; 
 }
 
-.table th, .table td {
+.listTable th, .listTable td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
 }
 
-.table th {
-    background-color: #04310d; /* Adjust as needed */
+.listTable th {
+    background-color: #163421; /* Adjust as needed */
+    color: #ffffff;
 }
 
-.table tr:nth-child(even) {
-    background-color: #2e2d2d; /* Adjust as needed */
+.listTable tr:nth-child(even) {
+    background-color: #ffffff; /* Adjust as needed */
    
 }

@@ -1,10 +1,10 @@
-form {
+#form {
     background-color: #0b2b17;
-    padding: 20px;
+
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(148, 170, 36, 0.1);
     width: 400px;
-    margin: 20px auto;
+    margin: 15px auto;
 }
 
 .formTable {
@@ -13,16 +13,19 @@ form {
 
 td {
     padding: 10px;
+    color: #fff;  /* Set the text color to white */
     text-align: left;
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    border: 1px solid #4a4545;
+    border: 1px solid #fcf9f9;
     border-radius: 4px;
+    color: #000;  /* Set the text color to black */
 }
 
 select {

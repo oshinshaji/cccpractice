@@ -9,6 +9,12 @@ class Core_Model_Abstract{
         $this->init();
 
     }
+   protected function _beforeSave(){
+        return $this;
+    }
+   protected function _afterSave(){
+        return $this;
+    }
     public function init(){ }
 
     public function setResourceClass($resourceClass){
@@ -95,8 +101,11 @@ class Core_Model_Abstract{
     }
 
     public function save(){
+        $this->_beforeSave();
     //    print_r( $this->getData());
        $this->getResource()->save($this);
+       $this->_afterSave();
+
        return $this;
     //    print_r( $this);
     }

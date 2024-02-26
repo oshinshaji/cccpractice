@@ -7,14 +7,10 @@ $productCollection = Mage::getModel("catalog/product")->getCollection()
     // ->addFieldToFilter('price',['between' => '2000,300000'])
 ;
 // print_r($productCollection);
-foreach ($productCollection->getData() as $product) {
-    // echo "<pre>";
-    // var_dump($product->getSku());
-    // print_r($product);
-}
+
 // echo get_class($productCollection); 
 ?>
-<div class="table">
+<div class="listTable">
     <table>
         <tr>
             <th>Product Id</th>
@@ -101,6 +97,6 @@ foreach ($productCollection->getData() as $product) {
                 </td>
             </tr>
 
-            <?php echo "<br>"; endforeach; ?>
+            <?php  endforeach; ?>
     </table>
 </div>

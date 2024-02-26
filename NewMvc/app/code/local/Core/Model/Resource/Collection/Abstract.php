@@ -26,7 +26,6 @@ class Core_Model_Resource_Collection_Abstract
 
     public function select()
     {
-        
         $this->_select['from'] = $this->_resource->getTableName();
         // print_r($this->_select['from']);
         return $this;
@@ -70,34 +69,7 @@ class Core_Model_Resource_Collection_Abstract
     }
     public function orderBy()
     {
-        $whereCondition = [];
-        foreach ($this->_select['where'] as $_field => $_filters) {
-            foreach ($_filters as $_value) {
-                if (!is_array($_value)) {
-                    $_value = ['eq' => $_value];
-                }
-                foreach ($_value as $_k => $_v) {
-                    switch ($_k) {
-                        case 'gt':
-                            $whereCondition[] = "`$_field` > '{$_v}'";
-                            break;
-                        case 'in':
-                            $whereCondition[] = "`$_field` IN ( '{$_v}') ";
-                            break;
-                        case 'eq':
-                            $whereCondition[] = "`$_field` = '{$_v}' ";
-                            break;
-                        case 'between':
-                            $_v = explode(',', $_v);
-                            $whereCondition[] = "`$_field` BETWEEN '{$_v[0]}' AND '{$_v[1]}' ";
-                            break;
-                    }
-                }
-            }
-
-        }
-        $whereCondition = implode(" AND ", $whereCondition);
-        return $whereCondition;
+    
 
     }
 

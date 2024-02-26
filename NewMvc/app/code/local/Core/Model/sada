@@ -1,0 +1,13 @@
+url for register form
+
+
+customer/account/register =HTML form with all fields for customer account
+customer/account/save= Post data here and store in database
+customer /account/login =email and password ht,l form
+customer/account/login =check llogin is valid or not. use same action and just put
+validation on php side using isPost function
+
+
+customer/account/dashboard =show here details about customer
+customer/account/forgotpassword =html page with email option , and post on same action.
+
