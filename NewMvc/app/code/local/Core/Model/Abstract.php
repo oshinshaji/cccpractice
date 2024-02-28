@@ -5,6 +5,7 @@ class Core_Model_Abstract{
     protected $collectionClass='';
     protected $resource=null;
     protected $collection=null;
+    protected $_modelClass=null;
     public function __construct(){
         $this->init();
 
@@ -43,6 +44,8 @@ class Core_Model_Abstract{
     public function getCollection(){
         $collection =new $this->collectionClass();
         $collection->setResource($this->getResource());
+        $collection->setModelClass($this->_modelClass);
+
         $collection->select();
         return $collection;
 

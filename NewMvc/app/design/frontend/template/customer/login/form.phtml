@@ -1,0 +1,56 @@
+<h1>Login form</h1>
+<form id="form" action="<?php echo $this->getUrl("customer/account/login") ?>" method="post">
+<table>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            <input type="email" placeholder="email" name="ldata[customer_email]" value="">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Password
+        </td>
+        <td>
+            <input type="password" placeholder="password" name="ldata[password]" value="">
+        </td>
+    </tr>
+    <tr>
+            <td>
+                <input type="submit" value="Submit" name="submit">
+            </td>
+        </tr>
+</table>
+</form>
+<!-- 
+    form id="login form"
+    input ttpe button
+    submit button onclick "loginaction"
+    <script type
+    function loginaction(btn){
+        console.log($(login form)) //len 1
+        var form=$($(login form[0]) //
+        console.log(form[0].action);
+        console.log(form[0].serialize());
+
+
+
+$.ajax({
+  url: form.acion,
+  type:'Post'
+  content type
+  context: form.serialize()
+}).done(function() {
+  $( this ).addClass( "done" );
+});
+    }
+
+    tohtml
+    obstart
+    obclean
+    catalog/product/view
+    catalog/product/listsa
+ -->

@@ -1,17 +1,18 @@
 .listTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 0px; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
 }
 
 .listTable th, .listTable td {
-    border: 1px solid black;
+    border: 1px solid rgb(219, 208, 208);
     padding: 8px;
     text-align: left;
 }
 
 .listTable th {
-    background-color: #163421; /* Adjust as needed */
+    background-color: #062d00; /* Adjust as needed */
     color: #ffffff;
 }
 

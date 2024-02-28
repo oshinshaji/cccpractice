@@ -1,10 +1,10 @@
 #form {
     background-color: #0b2b17;
-
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(148, 170, 36, 0.1);
-    width: 400px;
+    width: 800px;
     margin: 15px auto;
+    padding: 20px;
 }
 
 .formTable {
@@ -39,8 +39,12 @@ input[type="submit"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: block; /* Make it a block-level element */
+    margin: 0 auto; /* Center horizontally */
 }
 
 input[type="submit"]:hover {
     background-color: #1a431c;
 }
+
+

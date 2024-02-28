@@ -34,28 +34,33 @@ class Core_Model_Resource_Abstract
         return $this->getAdapter()->fetchRow($sql);
     }
 
-    public function save(Catalog_Model_Product $product)
+    public function save(Core_Model_Abstract $model)
     {
 
-        $getData = $product->getData();
+        $getData = $model->getData();
+        print_r($getData);
+
         if(isset($getData[$this->getPrimaryKey()]) && !empty($getData[$this->getPrimaryKey()]))
         {
+            echo "in if0";
             unset($getData[$this->getPrimaryKey()]);
           $sql = $this->updateSql(
                 $this->getTableName(),
                 $getData,
-                [$this->getPrimaryKey() => $product->getId()]
+                [$this->getPrimaryKey() => $model->getId()]
             );
             $id = $this->getAdapter()->update($sql);
 
 
         }
          else {
+            echo "in else0";
+
             $sql = $this->insertSql($this->getTableName(), $getData);
             // echo $sql;
             // echo $sql;
             $id = $this->getAdapter()->insert($sql);
-            $product->setId($id);
+            $model->setId($id);
         }
 
     }
@@ -100,9 +105,9 @@ class Core_Model_Resource_Abstract
 
     //delete
 
-    public function delete(Catalog_Model_Product $product)
+    public function delete(Core_Model_Abstract $model)
     {
-       echo $sql = $this->deleteSql($this->getTableName(),[$this->getPrimaryKey() => $product->getId()] );
+       echo $sql = $this->deleteSql($this->getTableName(),[$this->getPrimaryKey() => $model->getId()] );
         $this->getAdapter()->delete($sql);
 
 

@@ -1,0 +1,144 @@
+<h1>Register form</h1>
+<?php
+// $product_model = $this->getProduct();
+// print_r($product_model->getname());
+$customer = $this->getCustomer();
+print_r($customer);
+
+// print_r($this);
+?>
+<form id ="form"action="<?php echo $this->getUrl("customer/account/save") ?>" method="post">
+    <table class="formTable">
+        <tr>
+            Customer_id:
+            <td>
+                <input type="hidden" name="cdata[customer_id]" value="<?php echo $customer->getId(); ?>" >
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="email" placeholder="email" name="cdata[customer_email]" value="<?php echo $customer->getCustomerEmail(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                <input type="password" placeholder="******" name="cdata[password]" value="<?php echo $customer->getPassword(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                First Name
+            </td>
+            <td>
+                <input type="text" placeholder="first name" name="cdata[first_name]" value="<?php echo $customer->getFirstName(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Last Name
+            </td>
+            <td>
+                <input type="text" placeholder="last name" name="cdata[last_name]" value="<?php echo $customer->getLastName(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Billing Address
+            </td>
+            <td>
+                <input type="textarea" placeholder="billing address" name="cdata[billing_address]" value="<?php echo $customer->getBillingAddress(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Billing City
+            </td>
+            <td>
+                <input type="text" placeholder="billing city" name="cdata[billing_city]" value="<?php echo $customer->getBillingCity(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Billing Region
+            </td>
+            <td>
+                <input type="text" placeholder="billing region" name="cdata[billing_region]" value="<?php echo $customer->getBillingRegion(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Billing Country
+            </td>
+            <td>
+                <input type="text" placeholder="billing country" name="cdata[billing_country]" value="<?php echo $customer->getBillingCountry(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Billing Phone
+            </td>
+            <td>
+                <input type="text" placeholder="billing phone" name="cdata[billing_phone]" value="<?php echo $customer->getBillingPhone(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Shipping Address	
+            </td>
+            <td>
+                <input type="text" placeholder="shipping address" name="cdata[shipping_address]" value="<?php echo $customer->getShippingAddress(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Shipping City
+            </td>
+            <td>
+                <input type="text" placeholder="shipping city" name="cdata[shipping_city]" value="<?php echo $customer->getShippingCity(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Shipping Region
+            </td>
+            <td>
+                <input type="text" placeholder="shipping region" name="cdata[shipping_region]" value="<?php echo $customer->getShippingRegion(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Shipping Country
+            </td>
+            <td>
+                <input type="text" placeholder="shipping_country" name="cdata[billing_city]" value="<?php echo $customer->getShippingCountry(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Shipping Phone
+            </td>
+            <td>
+                <input type="text" placeholder="shipping_phone" name="cdata[shipping_phone]" value="<?php echo $customer->getShippingPhone(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            Default
+            </td>
+            <td>
+                <input type="text"  name="cdata[default]" value="<?php echo $customer->getDefault(); ?>">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit" name="submit">
+            </td>
+        </tr>
+    </table>
+</form>

@@ -4,6 +4,7 @@ class Core_Model_Resource_Collection_Abstract
     protected $_resource = null;
     protected $_select = [];
     protected $_isLoaded = false;
+    protected $_modelClass=null;
 
     protected $_data = [];
 
@@ -11,6 +12,9 @@ class Core_Model_Resource_Collection_Abstract
     {
         $this->_resource = $resource;
         return $this;
+    }
+    public function setModelClass($modelClass){
+        $this->_modelClass = $modelClass;
     }
     public function getData()
     {
@@ -114,7 +118,7 @@ class Core_Model_Resource_Collection_Abstract
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
         $this->_isLoaded = true;
         // print_r($this->_select);

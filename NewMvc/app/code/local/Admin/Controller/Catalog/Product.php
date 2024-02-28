@@ -1,6 +1,7 @@
 <?php
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
+protected $_allowAction=['list'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -29,9 +30,9 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
                 throw new Exception('Request not valid');
             }
             $data = $this->getRequest()->getParams('pdata');
-            /* if(!isset($data['price'])|| !is_numeric($data['price'])){
+            if(!isset($data['price'])|| !is_numeric($data['price'])){
                 throw new Exception('Price is not valid');
-            } */
+            }
             echo "<pre>";
             $id = (isset($data['product_id'])) ? $data['product_id'] : 0;
             $productModel = Mage::getModel('catalog/product');
@@ -39,6 +40,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
             $productModel->save();
             // $productModel= new Catalog_Model_Product();// print_r($productModel);
             // $productModel->save();
+            $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
             
         print_r($productModel);
 
@@ -58,6 +60,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
             ->load($this->getRequest()->getParams('id', 0))
             ->delete();
         // $productModel->delete($id);
+        header("Location: list");
     }
 
     public function listAction()

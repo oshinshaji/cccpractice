@@ -5,6 +5,7 @@ class Catalog_Model_Product extends Core_Model_Abstract{
         
         $this->resourceClass="Catalog_Model_Resource_Product";
         $this->collectionClass="Catalog_Model_Resource_Collection_Product";
+        $this->_modelClass="catalog/product";
     }
 
     public function getStatus() {

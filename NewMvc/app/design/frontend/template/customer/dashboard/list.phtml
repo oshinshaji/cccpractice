@@ -1,0 +1,92 @@
+<?php
+$customer = $this->getCustomer();
+// echo "<pre>";
+// print_r( $customer );
+$customer->getId();
+?>
+<div class="listTable ">
+    <table>
+        <tr>
+            <th>Customer Id</th>
+            <th>Customer Email</th>
+            <th>Password</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>billing_address</th>
+            <th>billing_city</th>
+            <th>billing_region</th>
+            <th>billing_country</th>
+            <th>billing_phone</th>
+            <th>shipping_address</th>
+            <th>shipping_city</th>
+            <th>shipping_region</th>
+            <th>shipping_country</th>
+            <th>shipping_phone</th>
+            <th>default</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        <tr>
+            <td>
+                <?php print_r($customer->getCustomerId());?>
+            </td>
+            <td>
+                <?php print_r($customer->getCustomerEmail()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getPassword()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getFirstName()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getLastName()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getBillingAddress()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getBillingCity()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getBillingRegion()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getBillingCountry()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getBillingPhone()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getShippingAddress()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getShippingCity()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getShippingRegion()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getShippingCountry()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getShippingPhone()); ?>
+            </td>
+            <td>
+                <?php print_r($customer->getDefault()); ?>
+            </td>
+
+            <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/catalog_product/form?id=<?php print_r($customer->getId()) ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/catalog_CUSTOM$customer/delete?id=<?php print_r($customer->getId()) ?>">Delete</a>
+                </td>
+           
+        </tr>
+
+    </table>
+</div>

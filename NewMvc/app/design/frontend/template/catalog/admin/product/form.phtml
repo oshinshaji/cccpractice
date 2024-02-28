@@ -3,6 +3,7 @@ echo Mage::getSingleton('core/session')->remove('customer_id');
 $product_model = $this->getProduct();
 // print_r($product_model->getname());
 ?>
+<div class="container">
 <form id="form" action="<?php echo $this->getUrl("admin/catalog_product/save") ?>" method="post">
     <table class="formTable">
         <tr>
@@ -174,3 +175,4 @@ $product_model = $this->getProduct();
         </tr>
     </table>
 </form>
+</div>
