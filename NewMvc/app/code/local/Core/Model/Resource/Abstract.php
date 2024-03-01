@@ -30,19 +30,14 @@ class Core_Model_Resource_Abstract
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-        // echo $sql;
         return $this->getAdapter()->fetchRow($sql);
     }
 
     public function save(Core_Model_Abstract $model)
     {
-
         $getData = $model->getData();
-        // print_r($getData);
-
         if(isset($getData[$this->getPrimaryKey()]) && !empty($getData[$this->getPrimaryKey()]))
         {
-            echo "in if0";
             unset($getData[$this->getPrimaryKey()]);
           $sql = $this->updateSql(
                 $this->getTableName(),
@@ -54,11 +49,8 @@ class Core_Model_Resource_Abstract
 
         }
          else {
-            echo "in else0";
 
             $sql = $this->insertSql($this->getTableName(), $getData);
-            // echo $sql;
-            // echo $sql;
             $id = $this->getAdapter()->insert($sql);
             $model->setId($id);
         }

@@ -19,10 +19,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $action = $this->getRequest()->getActionName();
         if (in_array($action, $this->_loginRequiredActions)) {
             $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-            echo "eeeeeeeeeee";
+
 
             if (!$customerId) {
-                echo "njrfjefbie";
+
                 $this->setRedirect('customer/account/login');
                 exit();
             }
@@ -49,11 +49,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             $data = $this->getRequest()->getParams('cdata');
 
-            echo "<pre>";
-            // print_r($data);
+
             $productModel = Mage::getModel('customer/customer');
             $productModel->setData($data)->save();
-            // print_r($productModel);
+
 
         } catch (Exception $e) {
             var_dump($e->getMessage());
@@ -120,8 +119,8 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function loginAction()
     {
         if (!$this->getRequest()->isPost()) {
-            // throw new Exception('Request not valid');
-            // echo "in loginAction";
+
+
             $layout = $this->getLayout();
             $child = $layout->getChild('content');
             $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/form.css');
@@ -133,8 +132,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $layout->toHtml();
         } else {
             try {
-
-
+                $message = [];
                 $data = $this->getRequest()->getParams('ldata');
                 $email = $data['customer_email'];
                 $password = $data['password'];
@@ -143,51 +141,42 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                     ->addFieldToFilter('password', $password);
                 $count = 0;
                 $customerId = 0;
-                // echo "<pre>";
-                // print_r($data);
+
                 foreach ($data->getData() as $data) {
                     $count++;
                     $customerId = $data->getCustomerId();
-                    // echo $customerId;
+
                 }
                 if ($count) {
-                    echo "logged in";
-                    // echo $customerId;
                     Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
                     // $session->set('logged_in_customer_id', $customerId);
-                  /*   $message = [
+                    $message = [
                         'type' => 'success',
                         'message' => 'Successful'
-                    ]; */
-                    //     $message=['type'=>'success',
-                    // 'message'=>'successful'];
-                    // print_r($_SESSION);
+                    ];
+                    //    $this->setRedirect("customer/account/dashboard");
+                    // header("Location: " . Mage::getBaseUrl().'customer/account/dashboard');
 
-                    // header("Location:dashboard");
-                   $this->setRedirect("customer/account/dashboard");
-
-
-
+                    //    exit();
                 } else {
-                    echo "wrong credentials";
+                    // echo "wrong credentials";
                     Mage::getSingleton("core/session")->remove('logged_in_customer_id');
-                    throw new Exception('Email Id And Password Is Invalid');
+                    // throw new Exception('Email Id And Password Is Invalid');
+                    $message = [
+                        'type' => 'invalid',
+                        'message' => 'Wrong credentials'
+                    ];
 
                 }
 
             } catch (Exception $e) {
                 var_dump($e->getMessage());
-                //     $message=['type'=>'error',
-                // 'message'=>$e->getMessage()];
-                // $message = [
-                //     'type' => 'error',
-                //     'message' => $e->getMessage()
-                // ];
+                $message = [
+                    'type' => 'error',
+                    'message' => $e->getMessage()
+                ];
             }
-            // echo json_encode($message);
-
-            // header("Location:dashboard");
-
+            echo json_encode($message);
         }
     }
 
@@ -219,17 +208,16 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
     public function dashboardAction()
     {
-            // $session = Mage::getSingleton('core/session');
+        // $session = Mage::getSingleton('core/session');
 
-            $layout = $this->getLayout()->setTemplate('core/2column.phtml');
-            $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
-            $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
-
-            $child = $layout->getChild('content');
-            $dashboard = $layout->createBlock('customer/dashboard');
-            $child->addChild('form', $dashboard);
-            $layout->toHtml();
-            // $customerId = $session->get('logged_in_customer_id');
+        $layout = $this->getLayout()->setTemplate('core/2column.phtml');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
+        $child = $layout->getChild('content');
+        $dashboard = $layout->createBlock('customer/dashboard');
+        $child->addChild('dashboardForm', $dashboard);
+        $layout->toHtml();
+        // $customerId = $session->get('logged_in_customer_id');
 
         // echo "in dashboard";
 

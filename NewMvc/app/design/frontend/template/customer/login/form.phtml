@@ -1,5 +1,5 @@
 <h1>Login form</h1>
-<form id="form" action="<?php echo $this->getUrl("customer/account/login") ?>" method="post">
+<form id="customer-form" action="<?php echo $this->getUrl("customer/account/login") ?>" method="post">
 <table>
     <tr>
         <td>
@@ -20,11 +20,34 @@
     </tr>
     <tr>
             <td>
-                <input type="submit" value="Submit" name="submit">
+                <input type="button" onclick="loginAction(this)" value="Submit" name="submit">
+                
             </td>
         </tr>
 </table>
+<div id="message"></div>
 </form>
+<script type="text/javascript">
+	function loginAction(btn) {
+		//console.log($('#customer-form'));
+		var form = $($('#customer-form'));
+		console.log(form.serialize());
+		$.ajax({
+			url: form.action,
+			type:'POST',
+			// contentType: "application/json",
+			data: form.serialize()	
+		}).done(function(response) {
+			var output = JSON.parse(response);
+			// alert(response)
+			alert(output.type)
+			$('#message')[0].innerHTML = output.message;
+			alert(output.message)
+			$( this ).addClass( "done" );
+			// $( this ).addClass( "done" );
+		});
+	}
+</script>
 <!-- 
     form id="login form"
     input ttpe button

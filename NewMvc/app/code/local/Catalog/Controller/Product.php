@@ -36,25 +36,27 @@ class Catalog_Controller_Product extends Core_Controller_Front_Action
 
     } */
 
-    public function viewAction(){
+    public function viewAction()
+    {
         // echo "in view action";
-        $layout=$this->getLayout();
-        $child=$layout->getChild('content');
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
 
-        $productView=$layout->createBlock('catalog/product_view');
+        $productView = $layout->createBlock('catalog/product_view');
         $child->addChild('view', $productView);
         $layout->toHtml();
         // $productModel=Mage::getModel('catalog/product')->load($this->getRequest()->getParams('id', 0));
 
     }
 
-    public function listAction(){
+    public function listAction()
+    {
         // echo "in list action";
-        $layout=$this->getLayout();
-        $child=$layout->getChild('content');
+        $layout = $this->getLayout();
+        $child = $layout->getChild('content');
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
-        $productList=$layout->createBlock('catalog/product_list');
+        $productList = $layout->createBlock('catalog/product_list');
         $child->addChild('productList', $productList);
         $layout->toHtml();
 

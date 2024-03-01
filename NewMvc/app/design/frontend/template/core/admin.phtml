@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="<?php echo Mage::getBaseUrl() . 'skin/js/jquery-3.7.1.min.js'?>"></script>
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"href="<?php echo Mage::getBaseUrl().'skin/css/product/admin.css'?>">
     <?php $this->getChildHtml('head');?>
 </head>
 <body>
-    ADMIN
-    
-    <div class="header"><?php $this->getChildHtml('header');?></div>
+    <div class="adminHeader"><?php $this->getChildHtml('adminHeader');?></div>
     <div class="content"><?php $this->getChildHtml('content');?></div>
+
+   
+    <!--  -->
+    <div class="adminFooter"><?php $this->getChildHtml('adminFooter');?></div>
+
 
 </body>
 </html>
