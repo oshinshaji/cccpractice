@@ -4,8 +4,12 @@ class Core_Block_Template extends Core_Block_Abstract{
     public $template;
     protected $_child=[];
     public function toHtml(){
-        
+        //changes ob
+        ob_start();
+        ob_clean();
         $this->render();
+        ob_end_flush();
+
     }
 
     public function addChild($key,$value){
@@ -16,7 +20,9 @@ class Core_Block_Template extends Core_Block_Abstract{
     
 
     public function removeChild($key){
-
+        //changes
+        unset($this->_child[$key]);
+        return $this;
     }
 
     public function getChild($key){

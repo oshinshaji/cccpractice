@@ -9,5 +9,11 @@ class Customer_Block_Dashboard extends Core_Block_Template{
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
         // echo $customerId;
            return Mage::getModel('customer/customer')->load($customerId) ;
+
+   /*   check this
+      return Mage::getSingleton("customer/customer")
+        ->load(Mage::getSingleton("core/session")
+        ->get("logged_in_customer_id")); */
+
     }
 }

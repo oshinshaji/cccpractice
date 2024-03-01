@@ -11,6 +11,11 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
     public function init()
     {
+        // echo $this->getRequest()->getActionName();
+        // echo $this->getRequest()->getControllerName();
+
+        // echo $this->getRequest()->getModuleName();
+
         $action = $this->getRequest()->getActionName();
         if (in_array($action, $this->_loginRequiredActions)) {
             $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
@@ -48,7 +53,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             // print_r($data);
             $productModel = Mage::getModel('customer/customer');
             $productModel->setData($data)->save();
-            print_r($productModel);
+            // print_r($productModel);
 
         } catch (Exception $e) {
             var_dump($e->getMessage());
@@ -159,7 +164,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                     // print_r($_SESSION);
 
                     // header("Location:dashboard");
-            $this->setRedirect("customer/account/dashboard");
+                   $this->setRedirect("customer/account/dashboard");
 
 
 

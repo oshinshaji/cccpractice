@@ -1,7 +1,7 @@
 <?php 
 class Core_Model_Session{
     public function __construct(){
-        echo "123";
+        // echo "123";
         session_start();
 
         // if(is_null($_SESSION)){

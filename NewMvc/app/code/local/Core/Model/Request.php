@@ -60,7 +60,10 @@ class Core_Model_Request
 
 	public function getRequestUri()
 	{
-		$uri = str_replace("/cybercom_practice/NewMvc/", "", $_SERVER['REQUEST_URI']);
+		$str="/cybercom_practice/NewMvc/";
+		// echo $_SERVER['REQUEST_URI'];
+		$uri = str_replace($str, "", $_SERVER['REQUEST_URI']);
+		// echo $uri;
 		return $uri;
 	}
 
@@ -70,17 +73,20 @@ class Core_Model_Request
 	}
 
 	public function getActionName()
-	{
+	{  
+		// echo $this->_actionName;
 		return $this->_actionName;
 
 	}
 
 	public function getControllerName()
 	{
+		// echo $this->_controllerName;
 		return $this->_controllerName;
 	}
 	public function getModuleName()
-	{
+	{ 
+		// echo $this->_moduleName;
 		return $this->_moduleName;
 	}
 
@@ -90,6 +96,15 @@ class Core_Model_Request
 		$fullControllerClass = ucwords($fullControllerClass, "_");
 		return $fullControllerClass;
 	}
+
+
+
+
+
+
+
+
+	
 }
 
 

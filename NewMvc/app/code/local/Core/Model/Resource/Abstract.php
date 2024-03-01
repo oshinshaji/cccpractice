@@ -38,7 +38,7 @@ class Core_Model_Resource_Abstract
     {
 
         $getData = $model->getData();
-        print_r($getData);
+        // print_r($getData);
 
         if(isset($getData[$this->getPrimaryKey()]) && !empty($getData[$this->getPrimaryKey()]))
         {
