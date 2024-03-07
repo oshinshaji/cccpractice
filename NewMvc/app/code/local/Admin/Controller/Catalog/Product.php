@@ -2,8 +2,7 @@
 class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
     protected $_allowActions = [
-        'list','form'
-    
+        
     ];
     public function formAction()
     {
@@ -29,7 +28,6 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 
 
     }
-
     public function saveAction()
     {
         try {
@@ -44,22 +42,17 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
             // $id = (isset($data['product_id'])) ? $data['product_id'] : 0;
             $productModel = Mage::getModel('catalog/product');
             $productModel->setData($data);
+            
             $productModel->save();
             // $productModel= new Catalog_Model_Product();// print_r($productModel);
             // $productModel->save();
             $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
-
             // print_r($productModel);
-
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }
-
-
     }
-
     //delete
-
     public function deleteAction()
     {
         // $id = $this->getRequest()->getParams('id',0);

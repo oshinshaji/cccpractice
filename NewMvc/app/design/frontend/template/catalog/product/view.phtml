@@ -1,81 +1,44 @@
 <?php
-$product=$this->getProduct();
+$product = $this->getProduct();
 ?>
+<div class="product-view">
+    <div class="container-fluid">
+        <h2 class="box-heading">Product Details</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- General Details Box -->
+                <div class="box">
+                    <p><strong>Product Id:</strong> <?php echo $product->getId(); ?></p>
+                    <p><strong>SKU:</strong> <?php echo $product->getSku(); ?></p>
+                    <p><strong>Name:</strong> <?php echo $product->getName(); ?></p>
+                    <p><strong>Color:</strong> <?php echo $product->getColor(); ?></p>
+                    <p><strong>Size:</strong> <?php echo $product->getSize(); ?></p>
+                   
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Description Box -->
+                <div class="box">
+                    <p><strong>Description:</strong> <?php echo $product->getDescription(); ?></p>
+                    <p><strong>Image_Link:</strong> <?php echo $product->getImage_Link(); ?></p>
+                    <p><strong>Link:</strong> <?php echo $product->getLink(); ?></p>
+                    <p><strong>Category ID:</strong> <?php echo $product->getCategoryId(); ?></p>
+                    <p><strong>Status:</strong> <?php echo $product->getStatus(); ?></p>
+                </div>
+            </div>
+        </div>
 
-<div class="listTable">
-    <table>
-    <tr>
-        <th>Product Id</th>
-        <th>SKU</th>
-        <th>Name</th>
-        <th>Color</th>
-        <th>Size</th>
-        <th>Description</th>
-        <th>Image_Link</th>
-        <th>Link</th>
-        <th>Category ID</th>
-        <th>Price</th>
-        <th>Manufacturer Cost</th>
-        <th>Shipping Cost</th>
-        <th>Total Cost</th>
-        <th>Margin Percentage</th>
-        <th>Min Price</th>
-        <th>Status</th>
-
-    </tr>
-    <tr>
-        <td>
-            <?php print_r($product->getId()); ?>
-        </td>
-        <td>
-                    <?php print_r($product->getSku()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getName()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getColor()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getSize()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getDescription()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getImage_Link()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getLink()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getCategoryId()); ?>
-                </td>
-
-
-                <td>
-                    <?php print_r($product->getPrice()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getMfrCost()); ?>
-                </td>
-
-                <td>
-                    <?php print_r($product->getShippingCost()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getTotalCost()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getMarginPercentage()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getMin_Price()); ?>
-                </td>
-                <td>
-                    <?php print_r($product->getStatus()); ?>
-                </td>
-                
-    </tr>
-    </table>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <form action="<?php echo $this->getUrl("sales/quote/add") ?>" method="POST">
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="form-control" name="cart_data[quantity]" id="quantity" style="width: 60px;">
+                    </div>
+                    <input type="hidden" name="cart_data[id]" value="<?php echo $product->getId(); ?>">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

@@ -3,14 +3,14 @@
 // $product_model = $this->getProduct();
 // print_r($product_model->getname());
 $customer = $this->getCustomer();
-print_r($customer);
+// print_r($customer);
 
 // print_r($this);
 ?>
 <form id ="form"action="<?php echo $this->getUrl("customer/account/save") ?>" method="post">
     <table class="formTable">
         <tr>
-            Customer_id:
+     
             <td>
                 <input type="hidden" name="cdata[customer_id]" value="<?php echo $customer->getId(); ?>" >
             </td>
@@ -28,7 +28,7 @@ print_r($customer);
                 Password
             </td>
             <td>
-                <input type="password" placeholder="******" name="cdata[password]" value="<?php echo $customer->getPassword(); ?>">
+                <input type="password" placeholder="password" name="cdata[password]" value="<?php echo $customer->getPassword(); ?>">
             </td>
         </tr>
         <tr>

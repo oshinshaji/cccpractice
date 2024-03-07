@@ -1,0 +1,73 @@
+<?php
+// echo Mage::getSingleton('core/session')->remove('customer_id');
+$product_model = $this->getBanner();
+// print_r($product_model->getname());
+?>
+<div class="container">
+    <form id="form" action="<?php echo $this->getUrl("admin/banner/save") ?>" method="post"
+        enctype="multipart/form-data">
+        <table class="formTable">
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <input type="hidden" name="b_data[banner_id]" value="<?php echo $product_model->getId(); ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Title:
+                </td>
+                <td>
+                    <input type="text" placeholder="SKU" name="b_data[title]"
+                        value="<?php echo $product_model->getTitle(); ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Banner Image:
+                </td>
+                <td>
+                    
+                    <input type="file" placeholder="Image" name="b_data[banner_image]">
+                    <?php
+                    $bannerImage = $product_model->getBannerImage();
+                    if (!empty($bannerImage)) {
+                        echo '<img src="' . Mage::getBaseUrl() . 'media/banner/' . $bannerImage . '" alt="Banner Image" style="max-width: 150px; max-height: 150px; width: auto; height: auto;">';
+                    }
+                    ?>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Show on:
+                </td>
+                <td>
+                    <input type="text" placeholder="Show on" name="b_data[show_on]"
+                        value="<?php echo $product_model->getShowOn(); ?>">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Status:
+                </td>
+                <td>
+                    <select name="b_data[status]">
+                        <option value=" 1" <?php echo ($product_model->getStatus() == 1) ? 'selected' : ''; ?>>Enabled
+                        </option>
+                        <option value="0" <?php echo ($product_model->getStatus() == 0) ? 'selected' : ''; ?>>Disabled
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Submit" name="submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

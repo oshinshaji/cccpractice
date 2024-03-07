@@ -1,51 +1,51 @@
 <h1>Login form</h1>
 <form id="login-form" action="<?php echo $this->getUrl("admin/account/login") ?>" method="post">
-<table>
-    <tr>
-        <td>
-            Email
-        </td>
-        <td>
-            <input type="email" placeholder="email" name="al_data[admin_email]" value="">
-        </td>
-    </tr>
+    <table>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="email" placeholder="email" name="al_data[admin_email]" value="">
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Password
-        </td>
-        <td>
-            <input type="password" placeholder="password" name="al_data[admin_password]" value="">
-        </td>
-    </tr>
-    <tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                <input type="password" placeholder="password" name="al_data[admin_password]" value="">
+            </td>
+        </tr>
+        <tr>
             <td>
                 <input type="button" onclick="loginAction(this)" value="Submit" name="submit">
             </td>
         </tr>
-</table>
-<div id="message"></div>
+    </table>
+    <div id="message"></div>
 
 </form>
 <script type="text/javascript">
-	function loginAction(btn) {
-        
-		//console.log($('#login-form'));
-		var form = $($('#login-form'));
-		console.log(form.serialize());
-		$.ajax({
-			url: form.action,
-			type:'POST',
-			// contentType: "application/json",
-			data: form.serialize()	
-		}).done(function(response) {
-			var output = JSON.parse(response);
-			// alert(response)
-			alert(output.type)
-			$('#message')[0].innerHTML = output.message;
-			alert(output.message)
-			$( this ).addClass( "done" );
-			// $( this ).addClass( "done" );
-		});
-	}
+    function loginAction(btn) {
+
+        //console.log($('#login-form'));
+        var form = $($('#login-form'));
+        console.log(form.serialize());
+        $.ajax({
+            url: form.action,
+            type: 'POST',
+            // contentType: "application/json",
+            data: form.serialize()
+        }).done(function (response) {
+            var output = JSON.parse(response);
+            // alert(response)
+            alert(output.type)
+            $('#message')[0].innerHTML = output.message;
+            alert(output.message)
+            $(this).addClass("done");
+            // $( this ).addClass( "done" );
+        });
+    }
 </script>

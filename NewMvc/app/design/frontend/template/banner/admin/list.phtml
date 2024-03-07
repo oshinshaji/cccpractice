@@ -1,0 +1,60 @@
+<?php
+$bannerCollection = Mage::getModel("banner/banner")->getCollection()
+    // ->addFieldToFilter('name','pen')
+    // ->addFieldToFilter('name',['like' => 'cat'])
+    // ->addFieldToFilter('price',['gt' => '3'])
+    // ->addFieldToFilter('name',['in' => 'bet'])
+    // ->addFieldToFilter('price',['between' => '2000,300000'])
+;
+// print_r($productCollection);
+
+// echo get_class($productCollection); 
+?>
+<div class="listTable">
+    <table>
+        <tr>
+            <th>Banner Id</th>
+            <th>Title</th>
+            <th>Banner Image</th>
+            <th>Status</th>
+            <th>Show On</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php
+        foreach ($bannerCollection->getData() as $banner): ?>
+            <tr>
+                <td>
+                    <?php print_r($banner->getId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($banner->getTitle()); ?>
+                </td>
+                <t>
+                <td>
+                    <img src="<?php echo Mage::getBaseUrl() . 'media/banner/' . $banner->getBannerImage(); ?>">
+       
+                </td>
+
+            
+                <td>
+                    <?php print_r($banner->getStatus()); ?>
+                </td>
+                <td>
+                    <?php print_r($banner->getShowOn()); ?>
+                </td>
+
+                <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/banner/form?id=<?php print_r($banner->getId()) ?>">Edit</a>
+                </td>
+                <td>
+                    <a
+                        href="http://localhost/cybercom_practice/NewMvc/admin/banner/delete?id=<?php print_r($banner->getId()) ?>">Delete</a>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+    </table>
+</div>

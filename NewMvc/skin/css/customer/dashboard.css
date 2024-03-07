@@ -1,0 +1,70 @@
+
+  
+  .sidebar {
+    z-index: 100;
+    padding-top: 3.5rem;
+    padding-bottom: 57.5rem;
+    color: #fff;
+    height: fit-content;
+  }
+  
+  .sidebar-heading {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  .dash {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    color: #adb5bd;
+    transition: all 0.3s;
+  }
+  
+  .dash:hover {
+    background-color: #495057;
+    color: #fff;
+  }
+  
+  .dash.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .customer-details {
+    margin-left: 60px;
+    padding: 20px;
+  }
+  
+  .customer-details h2 {
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .customer-info {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-info h4 {
+    color: #000000;
+    margin-bottom: 15px;
+  }
+  
+  .edit {
+    background-color: #86e49d;
+    color: #006b21;
+    padding: 10px;
+    border-radius: 0.9rem;
+  }
+  
+  .delete {
+    background-color: #d893a3;
+    color: #b30021;
+    padding: 10px;
+    border-radius: 1rem;
+  }

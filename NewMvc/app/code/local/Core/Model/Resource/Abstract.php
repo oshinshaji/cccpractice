@@ -36,6 +36,7 @@ class Core_Model_Resource_Abstract
     public function save(Core_Model_Abstract $model)
     {
         $getData = $model->getData();
+    
         if(isset($getData[$this->getPrimaryKey()]) && !empty($getData[$this->getPrimaryKey()]))
         {
             unset($getData[$this->getPrimaryKey()]);
@@ -45,7 +46,7 @@ class Core_Model_Resource_Abstract
                 [$this->getPrimaryKey() => $model->getId()]
             );
             $id = $this->getAdapter()->update($sql);
-
+            // echo "here";
 
         }
          else {

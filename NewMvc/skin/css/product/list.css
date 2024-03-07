@@ -1,26 +1,64 @@
+.product-view {
+    margin-top: 50px; /* Adjust margin as needed */
+}
+#quantity {
+    width: 100px; /* Adjust the width as needed */
+}
+.box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box-heading {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Reduce space between specific elements */
+.box p strong {
+    margin-bottom: 5px;
+}
+.listTable-container {
+    display: inline-block;
+    text-align: left; /* Reset text-align for inner elements */
+    margin: 15px auto; /* Center horizontally */
+}
+
 .listTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 35px;
+    margin-bottom: 35px;
 }
 
 .listTable th,
 .listTable td {
     border: 1px solid rgb(219, 208, 208);
-    padding: 7px; /* Increase padding for better spacing */
+    padding: 7px;
     text-align: left;
 }
 
 .listTable th {
-    background-color: #315879; /* Darker background color for headers */
+    background-color: #315879;
     color: #fff;
 }
 
 .listTable tr:nth-child(even) {
-    background-color: #f2f2f2; /* Slightly darker background for even rows */
+    background-color: #f2f2f2;
 }
 
 .listTable tr:hover {
-    background-color: #e0e0e0; /* Lighter background on hover for better interactivity */
+    background-color: #e0e0e0;
 }

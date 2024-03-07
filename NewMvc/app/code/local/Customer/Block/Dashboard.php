@@ -14,6 +14,5 @@ class Customer_Block_Dashboard extends Core_Block_Template
            return Mage::getSingleton("customer/customer")
              ->load(Mage::getSingleton("core/session")
              ->get("logged_in_customer_id")); */
-
     }
 }

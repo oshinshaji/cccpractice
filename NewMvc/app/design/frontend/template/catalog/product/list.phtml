@@ -1,38 +1,36 @@
-<h1>list</h1>
 <?php
 print_r($this);
-$product=Mage::getModel("catalog/product")->getCollection();
+$product = Mage::getModel("catalog/product")->getCollection();
 ?>
 <!-- <div class="listTable"> -->
 <div class="listTable">
-<table >
-    <tr>
-        <th>Product Id</th>
-        <th>SKU</th>
-        <th>Name</th>
-        <th>Color</th>
-        <th>Size</th>
-        <th>Description</th>
-        <th>Image_Link</th>
-        <th>Link</th>
-        <th>Category ID</th>
-        <th>Price</th>
-        <th>Manufacturer Cost</th>
-        <th>Shipping Cost</th>
-        <th>Total Cost</th>
-        <th>Margin Percentage</th>
-        <th>Min Price</th>
-        <th>Status</th>
-        <th>View</th>
-       
-    </tr>
-    <?php
-    foreach($product->getData() as $product):?>
-    <tr>
-        <td>
-            <?php print_r($product->getId()); ?>
-        </td>
-        <td>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>Image_Link</th>
+            <th>Link</th>
+            <th>Category ID</th>
+            <th>Price</th>
+            <th>Manufacturer Cost</th>
+            <th>Shipping Cost</th>
+            <th>Total Cost</th>
+            <th>Margin Percentage</th>
+            <th>Min Price</th>
+            <th>Status</th>
+            <th>View</th>
+        </tr>
+        <?php
+        foreach ($product->getData() as $product): ?>
+            <tr>
+                <td>
+                    <?php print_r($product->getId()); ?>
+                </td>
+                <td>
                     <?php print_r($product->getSku()); ?>
                 </td>
                 <td>
@@ -56,15 +54,12 @@ $product=Mage::getModel("catalog/product")->getCollection();
                 <td>
                     <?php print_r($product->getCategoryId()); ?>
                 </td>
-
-
                 <td>
                     <?php print_r($product->getPrice()); ?>
                 </td>
                 <td>
                     <?php print_r($product->getMfrCost()); ?>
                 </td>
-
                 <td>
                     <?php print_r($product->getShippingCost()); ?>
                 </td>
@@ -84,9 +79,8 @@ $product=Mage::getModel("catalog/product")->getCollection();
                     <a
                         href="http://localhost/cybercom_practice/NewMvc/catalog/product/view?id=<?php print_r($product->getId()) ?>">View</a>
                 </td>
-               
-    </tr>
-    <?php endforeach;?>
+            </tr>
+        <?php endforeach; ?>
 
-</table>
+    </table>
 </div>

@@ -1,0 +1,54 @@
+admin/banner/form
+    file path = root folder>media>banner>xyz.jpg
+    store xyz.jpg in databaes
+admin/banner/list
+    list all banenrs here with edit and delete
+    edit will open form and user can see image
+
+Module
+    banner
+
+
+Show in page/index/index action or home page url
+under content child
+
+
+
+catalog/category/view?id=1
+//show all the product with category_id=1
+
+catalog/product/view?id=1
+//product details,quantity box & addToCart Button except cost
+
+
+//on submit of addToCart button product_id & quantity 
+sales/quote/add 
+//on Print_r we must get Post Data
+
+Admin 
+
+	Controller - app/code/local/admin/controller/{name}
+	Model - app/code/local/{module}/model/{name}
+	block - app/code/local/{module}/block/admin/{name}
+	view - app/design/frontend/template/{module}/admin/{name}
+
+Front
+
+	Controller - app/code/local/{module}/controller/{name}
+	Model - app/code/local/{module}/model/{name}
+	block - app/code/local/{module}/block/{name}
+	view - app/design/frontend/template/{module}/{name}
+
+
+
+	<td>
+	<form action="<?php echo $this->getUrl("sales/quote/add")?>" method="POST" >
+		<input type="submit" value="Add to cart" name="add_to_cart">
+	</form>
+		
+	</td>
+	<td>
+	<form action="<?php echo $this->getUrl("sales/quote/add")?>" method="POST" >
+			<input type="number" value="" name="cart_data[quantity]">
+	</form>
+	</td>

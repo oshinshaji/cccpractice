@@ -12,10 +12,8 @@ class Admin_Controller_Account extends Core_Controller_Admin_Action{
         if(!$this->getRequest()->isPost()){
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/form.css');
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
-
         $loginForm = $layout->createBlock('catalog/admin_account_login');
         $child->addChild('form', $loginForm);
         $layout->toHtml();

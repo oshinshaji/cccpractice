@@ -2,7 +2,7 @@
 class Mage
 {
     
-    public static $baseDir= 'C:\xampp\htdocs\Cybercom_Practice\NewMvc';
+    public static $baseDir= 'C:\xampp\htdocs\cybercom_practice\newMvc';
 
     private static $singleton=[];
     public static function init()
@@ -28,17 +28,14 @@ class Mage
         $classname=ucfirst(($name[0]))."_"."Block"."_".ucfirst(($name[1]));
         return new $classname();
         
-    }
-
-    
-    
+    } 
 
     public static function getSingleton($className)
     {
         // $model=explode("/",$className);
         // $modelObj=ucfirst($model[0])."_Model_".ucfirst($model[1]);
         if(isset(self::$singleton[$className])) {
-            echo "exists";
+            // echo "exists";
            return  self::$singleton[$className];
         }
         else{
@@ -68,7 +65,7 @@ class Mage
         return self::$baseDir;
     }
     public static function getBaseUrl(){
-        return "http://localhost/cybercom_practice/NewMvc/";
+        return "http://localhost/cybercom_practice/newMvc/";
     }
 }
 ?>

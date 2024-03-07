@@ -42,9 +42,11 @@ class Catalog_Controller_Product extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
+
 
         $productView = $layout->createBlock('catalog/product_view');
-        $child->addChild('view', $productView);
+        $child->addChild('productView', $productView);
         $layout->toHtml();
         // $productModel=Mage::getModel('catalog/product')->load($this->getRequest()->getParams('id', 0));
 
@@ -56,6 +58,8 @@ class Catalog_Controller_Product extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
+
         $productList = $layout->createBlock('catalog/product_list');
         $child->addChild('productList', $productList);
         $layout->toHtml();

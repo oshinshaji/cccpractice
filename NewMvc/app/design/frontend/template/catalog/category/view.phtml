@@ -1,0 +1,79 @@
+<?php
+// print_r($this->getCategoryId());
+$product = Mage::getModel('catalog/product')->getCollection()
+    ->addFieldToFilter('category_id', $this->getCategoryId())
+    ?>
+
+<div class="listTable-container d-flex justify-content-center">
+    <div class="listTable-container">
+        <div class="listTable">
+            <table>
+                <tr>
+                    <th>Product Id</th>
+                    <th>SKU</th>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Description</th>
+                    <th>Image_Link</th>
+                    <th>Link</th>
+                    <th>Category ID</th>
+                    <th>Status</th>
+                </tr>
+                <?php foreach ($product->getData() as $product): ?>
+                    <tr>
+                        <td>
+                            <?php print_r($product->getId()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getSku()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getName()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getColor()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getSize()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getDescription()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getImage_Link()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getLink()); ?>
+                        </td>
+                        <td>
+                            <?php print_r($product->getCategoryId()); ?>
+                        </td>
+                        <!-- 
+            <td>
+                <?php /* print_r($product->getPrice());  */ ?>
+            </td>
+            <td>
+                <?php /* print_r($product->getMfrCost());  */ ?>
+            </td>
+            <td>
+                <?php /* print_r($product->getShippingCost()); */ ?>
+            </td>
+            <td>
+                <?php /* print_r($product->getTotalCost());  */ ?>
+            </td>
+            <td>
+                <?php /* print_r($product->getMarginPercentage()); */ ?>
+            </td>
+            <td>
+                <?php /* print_r($product->getMin_Price()); */ ?>
+            </td>-->
+                        <td>
+                            <?php print_r($product->getStatus()); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+</div>

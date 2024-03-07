@@ -41,10 +41,22 @@
 			var output = JSON.parse(response);
 			// alert(response)
 			alert(output.type)
-			$('#message')[0].innerHTML = output.message;
-			alert(output.message)
-			$( this ).addClass( "done" );
+			// $('#message')[0].innerHTML = output.message;
+			// alert(output.message)
 			// $( this ).addClass( "done" );
+			// // $( this ).addClass( "done" );
+            if(output.type=="success"){
+				alert(output.message);
+				window.location.href="<?php echo $this->getUrl('customer/account/dashboard');?>";
+			}
+			else{
+				alert(output.message);
+			}
+			// $('#message')[0].innerHTML = output.message;
+			// alert(output.message)
+			// $( this ).addClass( "done" );
+			// $( this ).addClass( "done" );
+	
 		});
 	}
 </script>

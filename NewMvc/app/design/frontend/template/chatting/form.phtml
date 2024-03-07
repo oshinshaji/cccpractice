@@ -1,0 +1,61 @@
+<h1>Chatting</h1>
+
+<?php
+$user = $this->getUser();
+$table=Mage::getModel("chatting/chatting")->getCollection()
+->addFieldToOrderBy('id')
+
+    ->addFieldToLimit([1]);
+    ;
+echo "<pre>";
+    print_r($table);
+
+?>
+<form action =<?php echo $this->getUrl("chatting/user/save") ?> method="post">
+    <table class="formTable">
+        <tr>
+           
+            <td>
+                <input type="hidden" name="chatting_data[id]" value="">
+            </td>
+        </tr>
+        <tr>
+            
+            <td>
+                <input type="hidden" name="chatting_data[session_id]" value="">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                From USER
+            </td>
+            <td>
+                <input type="text" name="chatting_data[from_user]" value="">
+            </td>
+        </tr>
+        <tr>
+           
+            <td>
+                <input type="hidden" name="chatting_data[to_user]" value="oshin">
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                Message
+            </td>
+            <td>
+                <input type="text" name="chatting_data[message]" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit" name="submit">
+            </td>
+        </tr>
+    </table>
+
+
+</form>
