@@ -1,5 +1,7 @@
 .product-view-custom {
   margin-top: 50px; /* Adjust margin as needed */
+  margin-bottom: 50px; /* Adjust margin as needed */
+
 }
 
 #quantity-custom {
@@ -81,6 +83,7 @@
 
 .details-box-custom {
   /* Additional styles for the details box if needed */
+  
 }
 
 .btn-danger-custom {
@@ -90,3 +93,62 @@
 .btn-success-custom {
   /* Additional styles for the Checkout button if needed */
 }
+.image-quantity-box {
+  padding-top: 20px; /* Adjust the top padding as needed */
+  
+}
+.quantity-input {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+.quantity {
+  width: 10px; /* Adjust the width as needed */
+}
+
+
+.update-button {
+  margin-left: auto;
+}
+
+.listTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Table Header Row */
+.listTable th {
+  background-color: #dde3e9;
+  color: #fff;
+}
+
+/* Table Header */
+.listTable th {
+  border: 1px solid #ddd;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: bold;
+  color: #333; /* Default color */
+}
+
+/* Table Rows */
+.listTable td {
+  border: 1px solid #ddd;
+  padding: 10px 8px;
+}
+
+/* Alternating Row Color */
+.listTable tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Background color for even rows */
+}
+
+/* Links */
+.listTable a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+/* Hover Effect for Links */
+.listTable a:hover {
+  text-decoration: underline;
+}
+

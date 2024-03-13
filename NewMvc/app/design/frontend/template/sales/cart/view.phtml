@@ -1,38 +1,48 @@
 <?php
 $quote = $this->getQuote();
+$quoteId = $quote->getId();
+// print_r($quoteId);
 $item = $this->getItem();
 $productId = Mage::getModel('sales/quote_item')->getProductId();
-
 ?>
 <h1>Cart</h1>
 <?php foreach ($item as $item): ?>
     <?php
     $product = Mage::getModel('catalog/product')->getCollection()
         ->addFieldToFilter('product_id', $item->getProductId())->getData();
-    $quantity=$item->getId();
+    $itemId = $item->getId();
+    // echo $itemId;
     ?>
     <?php foreach ($product as $product): ?>
-        <div class="product-view">
+        <div class="product-view" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
-                        <!-- Image and Quantity Box -->
-                        <div class="image-quantity-box">
-                            <?php
-                            $imageLink = $product->getImageLink();
-                            if (!empty($imageLink)) {
-                                echo '<img src="' . Mage::getBaseUrl() . 'media/product/' . $imageLink . '" alt="Product Image" style="max-width: 100px;">';
-                            } ?>
-                            <p><strong>Quantity:</strong>
+                  <div class="col-md-3">
+    <!-- Image and Quantity Box -->
+    <div class="image-quantity-box">
+        <?php
+        $imageLink = $product->getImageLink();
+        if (!empty($imageLink)) {
+            echo '<img src="' . Mage::getBaseUrl() . 'media/product/' . $imageLink . '" alt="Product Image" style="max-width: 100px;">';
+        } ?>
+        <div class="quantity-input">
+            <form action="<?php echo $this->getUrl('sales/quote/updateQuantity') ?>" method="post">
+                <input type="hidden" name="update[item_id]" value="<?php echo $itemId ?>">
+                <input type="hidden" name="update[quote_id]" value="<?php echo $quoteId ?>">
+                <p><strong> </strong></p>
+                <input type="number" class="form-control" name="update[qty]" id="qty" style="width: 60px;" value="<?php echo $item->getQty(); ?>">
+                <input type="submit" class="btn btn-success" value="Update" name="submit">
+            </form>
+        </div>
+    </div>
+</div>
 
-                                <input type="number" class="form-control" name="cart_data[qty]" id="qty" style="width: 100px;"
-                                    value="<?php echo $item->getQty(); ?>">
-                            </p>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <!-- Details Box -->
                         <div class="details-box">
+                            <h3>
+                                <?php echo $product->getName(); ?>
+                            </h3>
                             <p><strong>Description:</strong>
                                 <?php echo $product->getDescription(); ?>
                             </p>
@@ -47,8 +57,10 @@ $productId = Mage::getModel('sales/quote_item')->getProductId();
                             </p>
                             <!-- Remove Button -->
                             <form action="<?php echo $this->getUrl("sales/quote/remove") ?>" method="POST">
-                                <input type="hidden" name="item_id" value="<?php echo $quantity?>">
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <input type="hidden" name="remove[item_id]" value="<?php echo $itemId ?>">
+                                <input type="hidden" name="remove[quote_id]" value="<?php echo $quoteId ?>">
+                                <!-- <button type="submit" class="btn btn-danger">Remove</button> -->
+                                <input type="submit" class="btn btn-danger" value="Remove" name="submit">
                             </form>
                         </div>
                     </div>

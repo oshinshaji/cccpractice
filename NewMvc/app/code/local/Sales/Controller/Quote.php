@@ -26,8 +26,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         $quoteModel = Mage::getSingleton('sales/quote');
         // $this->setRedirect("sales/quote/view?id={$quoteModel->getId()}");
         $this->setRedirect("sales/quote/view");
-
-
     }
 
     public function viewAction()
@@ -43,32 +41,72 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         $layout->toHtml();
     }
 
-    public function checkoutAction(){
+    public function checkoutAction()
+    {
         // echo "in checkout action";
-        $layout=$this->getLayout();
-        $layout->getChild('head')->addCss(Mage::getBaseUrl().'skin/css/product/footer.css');
-        $child=$layout->getChild('content');
-        $checkout=$layout->createBlock('sales/quote_checkout');
-        $child->addChild('checkout',$checkout);
+        $layout = $this->getLayout();
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/list.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/form.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/cart.css');
+        $layout->getChild('head')->addCss(Mage::getBaseUrl() . 'skin/css/product/footer.css');
+        $child = $layout->getChild('content');
+        $checkout = $layout->createBlock('sales/quote_checkout');
+        $child->addChild('checkout', $checkout);
         $layout->toHtml();
-       
+
     }
 
-    public function saveAction(){
+    public function saveAction()
+    {
         echo "in save action of sales quote";
-        try{
-            if(!$this->getRequest()->isPost()){
-                throw new  Exception('Request is not valid');
+        try {
+            if (!$this->getRequest()->isPost()) {
+                throw new Exception('Request is not valid');
             }
-            $data=$this->getRequest()->getParams('qc_data');
-            $quoteCustomerModel=Mage::getModel('sales/quote_customer');
+            $data = $this->getRequest()->getParams('qc_data');
+            $quoteCustomerModel = Mage::getModel('sales/quote_customer');
             $quoteCustomerModel->setData($data)->save();
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             var_dump($e->getMessage());
-
-
         }
+    }
+
+    public function removeAction()
+    {
+        // echo "in remove action";
+        $data = $this->getRequest()->getParams('remove');
+        print_r($data);
+        $itemId = $data['item_id'];
+        $quoteId = $data['quote_id'];
+        Mage::getModel('sales/quote_item')
+            ->load($itemId)
+            ->delete();
+        Mage::getModel('sales/quote')
+            ->load($quoteId)
+            ->save();
+        $this->setRedirect('sales/quote/view');
+    }
+
+    public function updateQuantityAction()
+    {
+        $updatedata = $this->getRequest()->getParams('update');
+        $itemId = $updatedata['item_id'];
+        $quoteId = $updatedata['quote_id'];
+        $quantity = $updatedata['qty'];
+
+        $data = Mage::getModel('sales/quote_item')
+            ->load($itemId)->getData();
+        $data['qty'] = $quantity;
+
+        Mage::getModel('sales/quote_item')
+            ->setData($data)
+            ->save();
+        Mage::getModel('sales/quote')
+            ->load($quoteId)
+            ->save();
+
+        $this->setRedirect('sales/quote/view');
+
     }
 
 }

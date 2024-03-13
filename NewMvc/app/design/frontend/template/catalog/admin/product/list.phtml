@@ -1,18 +1,10 @@
 <?php
 $productCollection = Mage::getModel("catalog/product")->getCollection()
-    ->addFieldToFilter('name','pen')
+    // ->addFieldToFilter('name','pen')
     // ->addFieldToLimit([3]);
-    ->addFieldToOrderBy('name')
+    // ->addFieldToOrderBy('name')
     // ->addFieldToGroupBy('category_id',['AVG'=>'price'],);
-
-    ->addFieldToFilter('name',['like' => 'pen'])
-    // ->addFieldToFilter('price',['gt' => '3'])
-    // ->addFieldToFilter('name',['in' => 'bet'])
-    // ->addFieldToFilter('price',['between' => '2000,300000'])
 ;
-// print_r($productCollection);
-
-// echo get_class($productCollection); 
 ?>
 <div class="listTable">
     <table>
@@ -23,7 +15,7 @@ $productCollection = Mage::getModel("catalog/product")->getCollection()
             <th>Color</th>
             <th>Size</th>
             <th>Description</th>
-            <th>Image_Link</th>
+            <th>Image</th>
             <th>Link</th>
             <th>Category ID</th>
             <th>Price</th>
@@ -59,7 +51,11 @@ $productCollection = Mage::getModel("catalog/product")->getCollection()
                     <?php print_r($product->getDescription()); ?>
                 </td>
                 <td>
-                    <?php print_r($product->getImage_Link()); ?>
+                    <?php
+                    $imageLink = $product->getImageLink();
+                    if (!empty($imageLink)) {
+                        echo '<img src="' . Mage::getBaseUrl() . 'media/product/' . $imageLink . '" alt="Product Image" style="max-width: 100px;">';
+                    } ?>
                 </td>
                 <td>
                     <?php print_r($product->getLink()); ?>
@@ -101,6 +97,6 @@ $productCollection = Mage::getModel("catalog/product")->getCollection()
                 </td>
             </tr>
 
-            <?php  endforeach; ?>
+        <?php endforeach; ?>
     </table>
 </div>

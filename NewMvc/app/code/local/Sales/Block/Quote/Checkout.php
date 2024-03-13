@@ -14,26 +14,29 @@ class Sales_Block_Quote_Checkout extends Core_Block_Template
 
     public function getItem()
     {
+        // echo "hereeee";
         $quote = $this->getQuote();
         return Mage::getModel('sales/quote_item')->getCollection()
             ->addFieldToFilter('quote_id', $quote->getId())->getData();
+        // print_r($data);
     }
 
     public function getQuote()
     {
-        return Mage::getModel('sales/quote')
-            ->load($this->getRequest()->getParams('id', 0));
+        $quoteModel = Mage::getSingleton('sales/quote');
+        $quoteModel->initQuote();
+        return $quoteModel;
     }
     public function getQuoteCustomer()
     {
-    //    print_r(Mage::getModel('sales/quote_customer'));
+        //    print_r(Mage::getModel('sales/quote_customer'));
         return Mage::getModel('sales/quote_customer')
             ->load($this->getRequest()->getParams('id', 0));
     }
 
     public function getCustomer()
     {
-       return Mage::getModel('customer/customer')->getCollection();
+        return Mage::getModel('customer/customer')->getCollection();
     }
 }
 ?>

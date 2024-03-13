@@ -27,10 +27,8 @@ class Sales_Block_View extends Core_Block_Template
     } */
   public function getQuote()
   {
-    // echo "<pre>";
     $quoteModel = Mage::getSingleton('sales/quote');
     $quoteModel->initQuote();
-
     return $quoteModel;
   }
 

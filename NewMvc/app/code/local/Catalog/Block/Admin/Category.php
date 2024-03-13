@@ -1,4 +1,4 @@
 <?php
-class Catalog_Block_Admin_Category{
+class Catalog_Block_Admin_Category extends Core_Block_Template{
 
 }
