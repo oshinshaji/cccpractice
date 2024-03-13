@@ -35,6 +35,8 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
                 throw new Exception('Request not valid');
             }
             $data = $this->getRequest()->getParams('pdata');
+            $data['image_link']=$_FILES['pdata']['name']['image_link'];
+
             if (!isset($data['price']) || !is_numeric($data['price'])) {
                 throw new Exception('Price is not valid');
             }
@@ -43,10 +45,27 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
             $productModel = Mage::getModel('catalog/product');
             $productModel->setData($data);
             
-            $productModel->save();
+            // $productModel->save();
+            $uploadDir = 'media/product/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+    
+            $uploadedFile = $_FILES['pdata']['name']['image_link'];
+        echo $uploadedFile; 
+            $uploadPath = $uploadDir.basename($uploadedFile);
+    
+            if (move_uploaded_file($_FILES['pdata']['tmp_name']['image_link'], $uploadPath)) {
+                // Save file path to the database
+                $productModel->setImageLink($uploadPath);
+                $productModel->save();
+                $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
+                // $this->setRedirect("admin/banner/form?id={$productModel->getId()}");
+            } else {
+                throw new Exception('File upload failed.');
+            }
             // $productModel= new Catalog_Model_Product();// print_r($productModel);
             // $productModel->save();
-            $this->setRedirect("admin/catalog_product/form?id={$productModel->getId()}");
             // print_r($productModel);
         } catch (Exception $e) {
             var_dump($e->getMessage());
@@ -94,8 +113,6 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         print_r($productModel);
         $productModel = Mage::getModel('catalog/product')->setData(['as', 'ab']);
         print_r($productModel);
-
-
 
     }
 

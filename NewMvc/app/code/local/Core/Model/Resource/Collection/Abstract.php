@@ -7,7 +7,6 @@ class Core_Model_Resource_Collection_Abstract
     protected $_modelClass = null;
 
     protected $_data = [];
-
     public function setResource(Core_Model_Resource_Abstract $resource)
     {
         $this->_resource = $resource;
@@ -19,20 +18,24 @@ class Core_Model_Resource_Collection_Abstract
     }
     public function getData()
     {
+        if (!$this->_isLoaded) {
+            $this->load();
+        }
+        return $this->_data;
+    }
 
+    public function getFirstItem()
+    {
         if (!$this->_isLoaded) {
             $this->load();
         }
         // print_r($this->_data);
-
-        return $this->_data;
+        return $this->_data[0];
     }
-
 
     public function select()
     {
         $this->_select['from'] = $this->_resource->getTableName();
-        // print_r($this->_select['from']);
         return $this;
     }
     public function addFieldToFilter($column, $filter)
@@ -94,12 +97,12 @@ class Core_Model_Resource_Collection_Abstract
     public function orderBy()
     {
         $orderByCondition = [];
-
-        foreach ($this->_select['orderBy'] as $_k => $_v) {
-            $orderByCondition[] = $_v;
+        foreach ($this->_select['orderBy'] as $_value) {
+            foreach ($_value as $_k => $_v) {
+                $orderByCondition[] = $_k . " " . $_v;
+            }
         }
         $orderByCondition = implode(" ", $orderByCondition);
-        // print_r($orderByCondition);
         return $orderByCondition;
 
 
@@ -107,14 +110,11 @@ class Core_Model_Resource_Collection_Abstract
     public function limit()
     {
         $limitCondition = [];
-
         foreach ($this->_select['limit'] as $_k => $_v) {
             $limitCondition[] = $_v;
         }
         $limitCondition = implode(" ", $limitCondition);
         return $limitCondition;
-
-
     }
 
     public function groupBy()
@@ -123,10 +123,9 @@ class Core_Model_Resource_Collection_Abstract
         $groupByCondition = [];
         foreach ($this->_select['groupBy'] as $_field => $_filters) {
             $groupBy[] = $_field;
-
             foreach ($_filters as $_value) {
                 foreach ($_value as $_k => $_v) {
-                    echo $_v;
+                    // echo $_v;
                     switch ($_k) {
                         case 'AVG':
                         case 'MAX':
@@ -145,7 +144,6 @@ class Core_Model_Resource_Collection_Abstract
         print_r($groupBy);
         $groupByCondition = implode(" ,", $groupByCondition);
         $groupBy[] = $groupByCondition;
-        // print_r($groupBy);
         return $groupBy;
 
     }
@@ -162,26 +160,20 @@ class Core_Model_Resource_Collection_Abstract
 
             }
             if (isset($this->_select['orderBy']) && count($this->_select['orderBy'])) {
-                $sql .= "ORDER BY {$this->orderBy()} ASC";
+                $sql .= "ORDER BY {$this->orderBy()}";
 
             }
             if (isset($this->_select['limit']) && count($this->_select['limit'])) {
                 $sql .= "LIMIT  {$this->limit()}";
 
             }
-            echo "here";
-            echo $sql;
         }
-
-
-        echo $sql;
-
+        // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
         $this->_isLoaded = true;
-
         return $this;
     }
 }

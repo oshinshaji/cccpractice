@@ -4,7 +4,7 @@ $product_model = $this->getProduct();
 // print_r($product_model->getname());
 ?>
 <div class="container">
-<form id="form" action="<?php echo $this->getUrl("admin/catalog_product/save") ?>" method="post">
+<form id="form" action="<?php echo $this->getUrl("admin/catalog_product/save") ?>" method="post" enctype="multipart/form-data">
     <table class="formTable">
         <tr>
             <td>
@@ -36,9 +36,9 @@ $product_model = $this->getProduct();
                 Color:
             </td>
             <td>
-                <input type="text" placeholder="Color" name="pdata[color]"
-                    value="<?php echo $product_model->getColor(); ?>">
-            </td>
+            <input type="color" class="color-input" placeholder="Color" name="pdata[color]"
+             value="<?php echo $product_model->getColor(); ?>">
+    </td>
         </tr>
         <tr>
             <td>
@@ -63,9 +63,15 @@ $product_model = $this->getProduct();
                 Image_Link:
             </td>
             <td>
-                <input type="text" placeholder="Image Link" name="pdata[image_link]"
-                    value="<?php echo $product_model->getImageLink(); ?>">
-            </td>
+                    
+                    <input type="file" placeholder="Image" name="pdata[image_link]">
+                    <?php
+                    $ImageLink = $product_model->getImageLink();
+                    if (!empty($ImageLink)) {
+                        echo '<img src="' . Mage::getBaseUrl() . 'media/product/' . $ImageLink . '" alt="Product Image" style="max-width: 150px; max-height: 150px; width: auto; height: auto;">';
+                    }
+                    ?>
+                </td>
         </tr>
         <tr>
             <td>

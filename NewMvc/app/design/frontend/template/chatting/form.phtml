@@ -1,43 +1,39 @@
 <h1>Chatting</h1>
 
 <?php
-$user = $this->getUser();
-$table=Mage::getModel("chatting/chatting")->getCollection()
-->addFieldToOrderBy('id')
+$chatModel = Mage::getModel('chatting/chatting');
+$lastUser = $chatModel->getLastUser();
 
-    ->addFieldToLimit([1]);
-    ;
-echo "<pre>";
-    print_r($table);
+if ($lastUser) {
+    $last = $lastUser->getFromUser();
+    $lastToUser = $lastUser->getToUser();
+} else {
+    $last = $lastToUser = '';
+}
 
 ?>
-<form action =<?php echo $this->getUrl("chatting/user/save") ?> method="post">
+<form action=<?php echo $this->getUrl("chatting/user/save") ?> method="post">
     <table class="formTable">
         <tr>
-           
+
             <td>
                 <input type="hidden" name="chatting_data[id]" value="">
             </td>
         </tr>
-        <tr>
-            
-            <td>
-                <input type="hidden" name="chatting_data[session_id]" value="">
-            </td>
-        </tr>
-        
+   
+
         <tr>
             <td>
                 From USER
             </td>
             <td>
-                <input type="text" name="chatting_data[from_user]" value="">
+                <input type="text" name="chatting_data[from_user]" value="<?php echo $lastToUser?>">
             </td>
         </tr>
         <tr>
-           
+
             <td>
-                <input type="hidden" name="chatting_data[to_user]" value="oshin">
+                <input type="hidden" name="chatting_data[to_user]" value="<?php echo $last ?>">
             </td>
         </tr>
 

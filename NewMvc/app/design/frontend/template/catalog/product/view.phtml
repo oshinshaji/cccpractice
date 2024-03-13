@@ -1,43 +1,53 @@
 <?php
 $product = $this->getProduct();
 ?>
-<div class="product-view">
+<div class="product-view-custom">
     <div class="container-fluid">
-        <h2 class="box-heading">Product Details</h2>
+        <h2 class="box-heading-custom">Product Details</h2>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <!-- Photo Box -->
+                <div class="box-custom">
+                    <?php
+                    $ImageLink = $product->getImageLink();
+                    if (!empty($ImageLink)) {
+                        echo '<img src="' . Mage::getBaseUrl() . 'media/product/' . $ImageLink . '" alt="Product Image" style="max-width: 100%; height: auto; max-height: 400px;">';
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-8">
                 <!-- General Details Box -->
-                <div class="box">
-                    <p><strong>Product Id:</strong> <?php echo $product->getId(); ?></p>
-                    <p><strong>SKU:</strong> <?php echo $product->getSku(); ?></p>
-                    <p><strong>Name:</strong> <?php echo $product->getName(); ?></p>
-                    <p><strong>Color:</strong> <?php echo $product->getColor(); ?></p>
+                <div class="box-custom">
+                    <h3><?php echo $product->getName(); ?></h3>
                     <p><strong>Size:</strong> <?php echo $product->getSize(); ?></p>
-                   
-                </div>
-            </div>
-            <div class="col-md-6">
-                <!-- Description Box -->
-                <div class="box">
-                    <p><strong>Description:</strong> <?php echo $product->getDescription(); ?></p>
-                    <p><strong>Image_Link:</strong> <?php echo $product->getImage_Link(); ?></p>
-                    <p><strong>Link:</strong> <?php echo $product->getLink(); ?></p>
-                    <p><strong>Category ID:</strong> <?php echo $product->getCategoryId(); ?></p>
-                    <p><strong>Status:</strong> <?php echo $product->getStatus(); ?></p>
-                </div>
-            </div>
-        </div>
+                    <p><strong>Color:</strong> <?php echo $product->getColor(); ?></p>
+                    <p><strong>Description:</strong><?php echo $product->getDescription(); ?></p>
 
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <form action="<?php echo $this->getUrl("sales/quote/add") ?>" method="POST">
-                    <div class="form-group">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" class="form-control" name="cart_data[quantity]" id="quantity" style="width: 60px;">
-                    </div>
-                    <input type="hidden" name="cart_data[id]" value="<?php echo $product->getId(); ?>">
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </form>
+                    <p><strong>Price:</strong> ₹<?php echo $product->getPrice(); ?></p>
+                    <!-- Quantity and Add to Cart -->
+                    <table>
+                    <form action="<?php echo $this->getUrl("sales/quote/add") ?>" method="POST">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <div class="form-group-custom mb-0">
+                                    <tr>
+                                    
+                                    <td><input type="number" class="form-control" name="cart_data[qty]" id="qty" style="width: 60px;"></td>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                              
+                                    <td><input type="hidden" name="cart_data[product_id]" value="<?php echo $product->getProductId(); ?>"></td>
+                                    <td><button type="submit" class="btn btn-primary-custom">Add to Cart</button><td>
+                            
+                                </tr>
+                            </div>
+             
+                        </div>
+                    </form>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

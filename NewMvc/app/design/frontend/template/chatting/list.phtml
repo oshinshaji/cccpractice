@@ -1,0 +1,50 @@
+<?php
+$chatCollection = Mage::getModel("chatting/chatting")->getCollection()
+    ->addFieldToLimit([1]);
+;
+// print_r($chatCollection);
+
+// echo get_class($chatCollection); 
+?>
+<div class="listTable">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Session</th>
+            <th>From User</th>
+            <th>To User</th>
+            <th>Message</th>
+            <th>Sent At</th>
+        </tr>
+        <?php
+        foreach ($chatCollection->getData() as $chat): ?>
+            <tr>
+                <td>
+                    <?php print_r($chat->getId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($chat->getSessionId());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($chat->getFromUser());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($chat->getToUser());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($chat->getMessage());
+                    ?>
+                </td>
+                <td>
+                    <?php print_r($chat->getSentAt());
+                    ?>
+                </td>
+            </tr>
+                
+            <?php  endforeach; ?>
+    </table>
+</div>

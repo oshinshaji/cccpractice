@@ -1,5 +1,6 @@
 <?php
-class Chatting_Model_Chatting extends Core_Model_Abstract{
+class Chatting_Model_Chatting extends Core_Model_Abstract
+{
     public function init()
     {
         $this->resourceClass = "Chatting_Model_Resource_Chatting";
@@ -7,12 +8,18 @@ class Chatting_Model_Chatting extends Core_Model_Abstract{
         $this->_modelClass = "chatting/chatting";
     }
 
-    public function getLastUser(){
-        $model=Mage::getModel('chatting/model');
-        $getData = $model->getData();
-
-            $sql = $this->insertSql($this->getTableName(), $getData);
-            $id = $this->getResource()->getAdapter()->insert($sql);
-            $model->setId($id);
+    public function getLastUser()
+    {
+        $model = Mage::getModel("chatting/chatting")->getCollection()
+            ->addFieldToOrderBy(['id' => 'DESC']);
+        $count = Mage::getModel("chatting/chatting")->getCollection()
+            ->addFieldToLimit([1]);
+        if (empty($count->getData())) {
+            return null;
         }
+
+        return $model->getFirstItem();
+    }
+    
+
 }

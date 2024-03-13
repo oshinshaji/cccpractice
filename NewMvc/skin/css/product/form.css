@@ -41,7 +41,10 @@ select {
 select {
     height: 42px;
 }
-
+.color-input {
+    width: calc(100% - 20px); /* Subtract any padding or margin as needed */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
 input[type="submit"] {
     background-color: #265073; /* Green submit button */
     color: #fff;

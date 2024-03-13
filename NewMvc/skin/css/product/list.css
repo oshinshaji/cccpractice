@@ -1,64 +1,92 @@
-.product-view {
-    margin-top: 50px; /* Adjust margin as needed */
-}
-#quantity {
-    width: 100px; /* Adjust the width as needed */
-}
-.box {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.product-view-custom {
+  margin-top: 50px; /* Adjust margin as needed */
 }
 
-.box-heading {
-    text-align: center;
-    margin-bottom: 10px;
+#quantity-custom {
+  width: 100px; /* Adjust the width as needed */
 }
 
-.form-group {
-    margin-bottom: 10px;
+.box-custom {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+.box-heading-custom {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-group-custom {
+  margin-bottom: 10px;
+}
+
+.btn-primary-custom {
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 /* Reduce space between specific elements */
-.box p strong {
-    margin-bottom: 5px;
-}
-.listTable-container {
-    display: inline-block;
-    text-align: left; /* Reset text-align for inner elements */
-    margin: 15px auto; /* Center horizontally */
+.box-custom p strong {
+  margin-bottom: 5px;
 }
 
-.listTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 35px;
-    margin-bottom: 35px;
+.listTable-container-custom {
+  display: inline-block;
+  text-align: left; /* Reset text-align for inner elements */
+  margin: 15px auto; /* Center horizontally */
 }
 
-.listTable th,
-.listTable td {
-    border: 1px solid rgb(219, 208, 208);
-    padding: 7px;
-    text-align: left;
+.listTable-custom {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
-.listTable th {
-    background-color: #315879;
-    color: #fff;
+.listTable-custom th,
+.listTable-custom td {
+  border: 1px solid rgb(219, 208, 208);
+  padding: 7px;
+  text-align: left;
 }
 
-.listTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+.listTable-custom th {
+  background-color: #315879;
+  color: #fff;
 }
 
-.listTable tr:hover {
-    background-color: #e0e0e0;
+.listTable-custom tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.listTable-custom tr:hover {
+  background-color: #e0e0e0;
+}
+
+.product-view-custom {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.product-view-custom:hover {
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-quantity-box-custom {
+  /* Additional styles for the image-quantity box if needed */
+}
+
+.details-box-custom {
+  /* Additional styles for the details box if needed */
+}
+
+.btn-danger-custom {
+  /* Additional styles for the Remove button if needed */
+}
+
+.btn-success-custom {
+  /* Additional styles for the Checkout button if needed */
 }
