@@ -19,12 +19,6 @@ class Sales_Block_View extends Core_Block_Template
       ->addFieldToFilter('quote_id', $quote->getId())->getData();
   }
 
-  /*   public function getQuote(){
-
-      return Mage::getModel('sales/quote')
-            ->load($this->getRequest()->getParams('id', 0));
-
-    } */
   public function getQuote()
   {
     $quoteModel = Mage::getSingleton('sales/quote');

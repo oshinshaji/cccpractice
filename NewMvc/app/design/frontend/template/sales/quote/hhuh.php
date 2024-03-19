@@ -3,9 +3,9 @@
 $quote = $this->getQuote();
 $item = $this->getItem();
 $quoteCustomer = $this->getQuoteCustomer();
-// $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-// $customer = $this->getCustomer()->addFieldToFilter('customer_id', $customerId)->getData();
-// $quoteId = $quote->getId();
+$customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+$customer = $this->getCustomer()->addFieldToFilter('customer_id', $customerId)->getData();
+$quoteId = $quote->getId();
 
 ?>
 <div class="container">
@@ -77,10 +77,25 @@ $quoteCustomer = $this->getQuoteCustomer();
 
                 <form id="form" action="<?php echo $this->getUrl("sales/quote/save") ?>" method="post">
                     <?php
-                    // foreach ($customer as $customer):
+                    foreach ($customer as $customer):
                         ?>
                         <table class="formTable">
-                           
+                            <tr>
+                                <td>
+                                    <input type="hidden" name="qc_data[quote_id]" value="<?php echo $quoteId; ?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="hidden" name="qc_data[customer_id]" value="<?php echo $customerId; ?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="hidden" placeholder="" name="qc_data[email]"
+                                        value="<?php echo $customer->getCustomerEmail(); ?>">
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     Billing Address
@@ -172,18 +187,24 @@ $quoteCustomer = $this->getQuoteCustomer();
                                 </td>
                             </tr>
                             <tr>
-                               
+                                <td>
+                                    <input type="submit" value="Submit" name="submit">
+                                </td>
                             </tr>
-                        <?php 
-                    // endforeach;
-                     ?>
+                        <?php endforeach; ?>
                     </table>
+                </form>
             </div>
         </div>
         <div class="shipping-method">
     <h2>Shipping Method</h2>
+    <form id="form" action="<?php echo $this->getUrl("sales/quote/shippingMethodSave") ?>" method="post">
         <table>
-          
+            <tr>
+                <td>
+                    <input type="hidden" name="sm_data[quote_id]" value="<?php echo $quote->getQuoteId() ?>">
+                </td>
+            </tr>
             <tr>
                 <td colspan="2">Shipping Method:</td>
                 <td>
@@ -194,15 +215,23 @@ $quoteCustomer = $this->getQuoteCustomer();
                     <input type="radio" id="freight" name="sm_data[shipping_method]" value="freight" style="vertical-align: middle;" <?php echo ($quote->getShippingMethod() == 'freight') ? 'checked' : ''; ?>>
                     <label for="freight" style="display: inline;">Freight</label>
                 </td>
-               
+                <td colspan="2">
+                    <input type="submit" value="Submit" name="submit">
+                </td>
             </tr>
         </table>
+    </form>
 </div>
 
         <div class="payment-method">
             <h2>Payment Method</h2>
+            <form id="form" action="<?php echo $this->getUrl("sales/quote/paymentMethodSave") ?>" method="post">
                 <table>
-               
+                    <tr>
+                        <td>
+                            <input type="hidden" name="pm_data[quote_id]" value="<?php echo $quote->getQuoteId() ?>">
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2">Payment Method:</td>
                         <td>

@@ -13,7 +13,9 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
         $action = $this->getRequest()->getActionName();
         if (in_array($action, $this->_loginRequiredActions)) {
             $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+            $actionUrl = $this->getRequest()->getRequestUri();
             if (!$customerId) {
+                Mage::getSingleton('core/session')->set('actionUrl', $actionUrl);
                 $this->setRedirect('customer/account/login');
                 exit();
             }
@@ -58,22 +60,70 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
 
     public function saveAction()
     {
-        echo "in save action of sales quote";
+        // echo "in save action of sales quote";
+        echo "<pre>";
+        /* try {
+            if (!$this->getRequest()->isPost()) {
+                throw new Exception('Request is not valid');
+            } */
+        $customerData = $this->getRequest()->getParams('qc_data');  
+        Mage::getSingleton('sales/quote')->addCustomer($customerData);
+
+        $shippingData = $this->getRequest()->getParams('sm_data');
+        $shippingObj=Mage::getSingleton('sales/quote')->addShipping($shippingData);
+        Mage::getSingleton('sales/quote')->addShipId($shippingObj->getId());
+
+        $paymentData = $this->getRequest()->getParams('pm_data');
+        // print_r($paymentData);
+        $paymentObj=Mage::getSingleton('sales/quote')->addPayment($paymentData);
+        // print_r($paymentObj);
+        Mage::getSingleton('sales/quote')->addPayId($paymentObj->getId());
+        /*  } catch (Exception $e) {
+             var_dump($e->getMessage());
+         } */
+         Mage::getSingleton('sales/quote')->convert();
+    }
+
+    public function shippingMethodSaveAction()
+    {
+
+        /*    $data = $this->getRequest()->getParams('sm_data');
+           Mage::getSingleton('sales/quote')->addShipping($data); */
+        /*    $quoteCustomerModel = Mage::getModel('sales/quote');
+           echo "<pre>";
+           print_r($data);
+           $quoteCustomerModel->setData($data)->save(); */
+        // $this->setRedirect("sales/quote/checkout?id={$quoteCustomerModel->getId()}");
+        /* $quoteCustomerModel = Mage::getModel('sales/quote_customer');
+        $quoteCustomerModel->setData($data)->save();
+        // print_r($quoteCustomerModel->getId());
+        $this->setRedirect("sales/quote/checkout?id={$quoteCustomerModel->getId()}"); */
+
+    }
+    public function paymentMethodSaveAction()
+    {
+        /* $data = $this->getRequest()->getParams('pm_data');
+        Mage::getSingleton('sales/quote')->addPayment($data); */
+        // $quoteCustomerModel = Mage::getModel('sales/quote_customer');
+        // $quoteCustomerModel->setData($data)->save();
+        // // print_r($quoteCustomerModel->getId());
+        // $this->setRedirect("sales/quote/checkout?id={$quoteCustomerModel->getId()}");
+        /* echo "in save action of sales quote";
         try {
             if (!$this->getRequest()->isPost()) {
                 throw new Exception('Request is not valid');
             }
-            $data = $this->getRequest()->getParams('qc_data');
-            $quoteCustomerModel = Mage::getModel('sales/quote_customer');
+            $data = $this->getRequest()->getParams('pm_data');
+            $quoteCustomerModel = Mage::getModel('sales/quote');
+            echo "<pre>";
+            print_r($data);
             $quoteCustomerModel->setData($data)->save();
         } catch (Exception $e) {
             var_dump($e->getMessage());
-        }
+        } */
     }
-
     public function removeAction()
     {
-        // echo "in remove action";
         $data = $this->getRequest()->getParams('remove');
         print_r($data);
         $itemId = $data['item_id'];

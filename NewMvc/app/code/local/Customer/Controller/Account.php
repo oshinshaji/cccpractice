@@ -2,7 +2,7 @@
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
     protected $_loginRequiredActions = [
-        'dashboard'
+        'dashboard',
     ];
     public function __construct()
     {
@@ -15,7 +15,16 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         // echo $this->getRequest()->getModuleName();
 
         $action = $this->getRequest()->getActionName();
+        $url=Mage::getSingleton('core/session')->get('actionUrl');
         if (in_array($action, $this->_loginRequiredActions)) {
+            if($url!=null){
+                Mage::getSingleton('core/session')->remove('actionUrl');
+                // echo "after remove";
+                // print_r(Mage::getSingleton('core/session')->get('actionUrl'));
+                // echo $url;
+                $this->setRedirect($url);
+                // exit();
+            }
             $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
             if (!$customerId) {
                 $this->setRedirect('customer/account/login');
@@ -44,6 +53,8 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $data = $this->getRequest()->getParams('cdata');
             $productModel = Mage::getModel('customer/customer');
             $productModel->setData($data)->save();
+            $this->setRedirect("customer/account/register?id={$productModel->getId()}");
+
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }
