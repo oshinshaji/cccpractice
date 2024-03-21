@@ -1,0 +1,41 @@
+<h1>Sales status</h1>
+<?php
+$orderCollection = Mage::getModel("sales/order")->getCollection()->getData(); 
+/* echo "<pre>";
+print_r($orderCollection); */
+$status = Mage::getModel('sales/status')->getStatusOptions();
+?>
+<div class="listTable">
+    <table>
+        <tr>
+            <th>Order Id</th>
+            <th>Order Number</th>
+            <th>No. of Products</th>
+            <th>Grand Total</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($orderCollection as $order): ?>
+            <tr>
+                <td><?php echo $order->getId(); ?></td>
+                <td><?php echo $order->getOrderNumber(); ?></td>
+                <td><?php echo $order->getId(); ?></td>
+                <td><?php echo $order->getGrandTotal(); ?></td>
+                <td>
+                    <form action="<?php echo $this->getUrl("admin/sales_order/save")?>" method="post">
+                    <input type="hidden" name="s_data[order_id]" value="<?php echo $order->getId(); ?>">
+                    <select name="s_data[to_status]">
+                            <?php foreach ($status as $key => $name): ?>
+                                <option value="<?php echo $key ?>"><?php echo $name ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="Update status">
+                    </form>
+                    <a href="http://localhost/cybercom_practice/NewMvc/admin/sales_order/view?id=<?php echo $order->getId(); ?>">ViewOrder</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

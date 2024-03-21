@@ -36,6 +36,8 @@ class Core_Model_Resource_Abstract
     public function save(Core_Model_Abstract $model)
     {
         $getData = $model->getData();
+        // echo "<pre>";
+        // print_r($getData);
     
         if(isset($getData[$this->getPrimaryKey()]) && !empty($getData[$this->getPrimaryKey()]))
         {
